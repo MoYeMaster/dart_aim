@@ -1,22 +1,24 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>rm_vision_bringup</name>
+  <name>detector</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="chen.junn@outlook.com">chenjun</maintainer>
+  <maintainer email="lastleafmaster@outlook.com">moye</maintainer>
   <license>TODO: License declaration</license>
 
-  <buildtool_depend>ament_cmake_auto</buildtool_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <exec_depend>ament_index_python</exec_depend>
-  <exec_depend>launch</exec_depend>
-  <exec_depend>launch_ros</exec_depend>
-  <exec_depend>detector</exec_depend>
-  <exec_depend>hik_camera_ros2_driver</exec_depend>
-  <exec_depend>rm_serial_driver</exec_depend>
+  <depend>rclcpp</depend>
+  <depend>rclcpp_components</depend>
+  <depend>sensor_msgs</depend>
+  <depend>cv_bridge</depend>
+  <depend>auto_aim_interfaces</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>libopencv-dev</depend>
+  <depend>message_filters</depend>
 
-  <test_depend>ament_cmake_pytest</test_depend>
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 

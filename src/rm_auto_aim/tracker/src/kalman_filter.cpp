@@ -17,6 +17,7 @@ KalmanFilter::KalmanFilter()
     H_ = Eigen::MatrixXd::Zero(2,4);
     H_(0, 0) = 1.0; 
     H_(1, 1) = 1.0; 
+    I_ = Eigen::MatrixXd::Identity(4, 4);
 }
 
 

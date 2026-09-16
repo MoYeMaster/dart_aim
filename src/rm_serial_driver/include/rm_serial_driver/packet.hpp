@@ -28,9 +28,12 @@ struct ReceivePacket
 struct SendPacket
 {
   uint8_t header = 0xA5;
-  float dyaw = 0.0F;
+  uint8_t flags = 0;
+  uint8_t data[16] = {};
   uint16_t checksum = 0;
 } __attribute__((packed));
+
+static_assert(sizeof(SendPacket) == 20, "SendPacket must be 20 bytes");
 
 inline ReceivePacket fromVectorWithoutHeader(const std::vector<uint8_t> & _data)
 {
@@ -52,7 +55,9 @@ inline std::vector<uint8_t> toVector(const SendPacket & _data)
 inline std::vector<uint8_t> makeDyawPacket(float _dyaw)
 {
   SendPacket packet{};
-  packet.dyaw = _dyaw;
+  std::copy(
+    reinterpret_cast<const uint8_t *>(&_dyaw),
+    reinterpret_cast<const uint8_t *>(&_dyaw) + sizeof(_dyaw), packet.data);
   crc16::Append_CRC16_Check_Sum(
     reinterpret_cast<uint8_t *>(&packet), sizeof(packet));
   return toVector(packet);

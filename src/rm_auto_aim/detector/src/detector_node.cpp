@@ -300,7 +300,7 @@ void DetectorNode::publishDartStates(
       detection.center.x, static_cast<double>(detector_image.cols), middle_error_ratio_);
     dart_states_pub.states = state.states;
     dart_states_pub.is_middle = state.is_middle;
-    dart_states_pub.dyaw = 0.0;
+    dart_states_pub.dyaw = 999.0;
 
     PnpResult result;
     if (estimateLight(detection, result)) {
