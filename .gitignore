@@ -1,0 +1,7 @@
+*.md
+/build
+/install
+/log
+/MvSdkLog
+/.pytest_cache
+/.vscode
