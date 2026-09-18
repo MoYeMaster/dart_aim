@@ -20,7 +20,17 @@ find_package(Eigen3 REQUIRED)
 
 add_executable(tracker_node src/tracker_node.cpp src/kalman_filter.cpp)
 target_include_directories(tracker_node PRIVATE include)
-ament_target_dependencies(tracker_node rclcpp auto_aim_interfaces Eigen3)
+ament_target_dependencies(tracker_node
+  rclcpp
+  rclcpp_components
+  sensor_msgs
+  cv_bridge
+  auto_aim_interfaces
+  std_msgs
+  geometry_msgs
+  message_filters
+  Eigen3
+)
 install(TARGETS tracker_node DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)

@@ -104,7 +104,7 @@ void SerialDriverNode::receiveData()
     try {
       serial_driver_->port()->receive(header);
 
-      if (0x5A != header[0]) {
+      if (0xA5 != header[0]) {
         RCLCPP_WARN_THROTTLE(get_logger(), *get_clock(), 20, "Invalid header: %02X", header[0]);
         continue;
       }
@@ -119,6 +119,11 @@ void SerialDriverNode::receiveData()
         RCLCPP_ERROR(this->get_logger(), "CRC Error!");
         continue;
       }
+
+      RCLCPP_INFO_THROTTLE(
+        get_logger(), *get_clock(), 1000,
+        "Received valid packet: flags=0x%02X, roll=%.3f",
+        packet.flags, parseRoll(packet));
 
       for (const auto & handler : handlers_) {
         handler->handle(packet);

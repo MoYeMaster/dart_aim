@@ -73,12 +73,12 @@ namespace rm_auto_aim
         filtered_light_.pose.position.z = state(1);
 
         auto filtered_lights_msg = std::make_unique<auto_aim_interfaces::msg::Lights>();
-        // filtered_lights_msg->header.stamp = current_time_.to_msg();
-        const auto timestamp = current_time_.nanoseconds();
-        filtered_lights_msg->header.stamp.sec =
-        static_cast<int32_t>(timestamp / 1000000000);
-        filtered_lights_msg->header.stamp.nanosec =
-        static_cast<uint32_t>(timestamp % 1000000000);
+        filtered_lights_msg->header.stamp = current_time_;
+        // const auto timestamp = current_time_.nanoseconds();
+        // filtered_lights_msg->header.stamp.sec =
+        // static_cast<int32_t>(timestamp / 1000000000);
+        // filtered_lights_msg->header.stamp.nanosec =
+        // static_cast<uint32_t>(timestamp % 1000000000);
 
         filtered_lights_msg->lights.push_back(filtered_light_);
         lights_pub_->publish(std::move(filtered_lights_msg));
@@ -93,3 +93,11 @@ namespace rm_auto_aim
 
 #include "rclcpp_components/register_node_macro.hpp"
 RCLCPP_COMPONENTS_REGISTER_NODE(rm_auto_aim::TrackerNode);
+
+int main(int argc, char ** argv)
+{
+    rclcpp::init(argc, argv);
+    rclcpp::spin(std::make_shared<rm_auto_aim::TrackerNode>(rclcpp::NodeOptions{}));
+    rclcpp::shutdown();
+    return 0;
+}

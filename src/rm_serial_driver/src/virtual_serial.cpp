@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cstring>
 #include <functional>
 #include <rclcpp/node.hpp>
 #include <string>
@@ -56,19 +57,10 @@ VirtualSerialNode::VirtualSerialNode(const rclcpp::NodeOptions _options)
 
 ReceivePacket VirtualSerialNode::getVirtualPacket()
 {
-  ReceivePacket virtual_packet {
-    .header = 0x5A,
-    // .detect_color = getDetectColorParameter(),
-    // .task_mode = getTaskModeParameter(),
-    // .reset_tracker = this->get_parameter("reset_tracker").as_bool(),
-    // .is_play = static_cast<uint8_t>(this->get_parameter("is_play").as_bool()),
-    // .change_target = this->get_parameter("change_target").as_bool(),
-    .roll = static_cast<float>(this->get_parameter("virtual_roll").as_double()),
-    // .pitch = static_cast<float>(this->get_parameter("virtual_pitch").as_double()),
-    // .yaw = static_cast<float>(this->get_parameter("virtual_yaw").as_double()),
-    // .bullet_speed = static_cast<float>(this->get_parameter("bullet_speed").as_double()),
-    .checksum = 0,
-  };
+  ReceivePacket virtual_packet{};
+  virtual_packet.header = 0x5A;
+  const float roll = static_cast<float>(this->get_parameter("virtual_roll").as_double());
+  std::memcpy(virtual_packet.data, &roll, sizeof(roll));
 
   return virtual_packet;
 }

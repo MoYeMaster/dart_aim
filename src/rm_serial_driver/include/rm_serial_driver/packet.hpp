@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <cstdint>
+#include <cstring>
 #include <vector>
 
 #include "rm_serial_driver/crc.hpp"
@@ -14,14 +15,9 @@ namespace rm_serial_driver
 {
 struct ReceivePacket
 {
-  uint8_t header = 0x5A;
-  // uint8_t task_mode : 2;    // 0-armor 1-small_buff 2-large-buff
-  // bool reset_tracker : 1;
-  // uint8_t is_play : 1;
-  // uint8_t reserved : 2;
-  float roll;
-  // float pitch;
-  // float yaw;
+  uint8_t header = 0xA5;
+  uint8_t flags = 0;
+  uint8_t data[16] = {};
   uint16_t checksum = 0;
 } __attribute__((packed));
 
@@ -33,14 +29,23 @@ struct SendPacket
   uint16_t checksum = 0;
 } __attribute__((packed));
 
+static_assert(sizeof(ReceivePacket) == 20, "ReceivePacket must be 20 bytes");
 static_assert(sizeof(SendPacket) == 20, "SendPacket must be 20 bytes");
 
 inline ReceivePacket fromVectorWithoutHeader(const std::vector<uint8_t> & _data)
 {
-  ReceivePacket packet;
-  packet.header = 0x5A;
-  std::copy(_data.begin(), _data.end(), (reinterpret_cast<uint8_t *>(&packet) + 1));
+  ReceivePacket packet{};
+  packet.header = 0xA5;
+  std::copy_n(_data.begin(), std::min(_data.size(), sizeof(ReceivePacket) - 1),
+    reinterpret_cast<uint8_t *>(&packet) + 1);
   return packet;
+}
+
+inline float parseRoll(const ReceivePacket & _packet)
+{
+  float roll = 0.0F;
+  std::memcpy(&roll, _packet.data, sizeof(roll));
+  return roll;
 }
 
 inline std::vector<uint8_t> toVector(const SendPacket & _data)

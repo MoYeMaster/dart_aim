@@ -3,7 +3,7 @@
 #include "detector/dart_state.hpp"
 #include "detector/image_utils.hpp"
 
-#include <cv_bridge/cv_bridge.h>
+#include <cv_bridge/cv_bridge.hpp>
 #include <opencv2/imgproc.hpp>
 
 #include <algorithm>

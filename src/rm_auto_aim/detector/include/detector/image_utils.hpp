@@ -1,7 +1,7 @@
 #ifndef DETECTOR__IMAGE_UTILS_HPP_
 #define DETECTOR__IMAGE_UTILS_HPP_
 
-#include <cv_bridge/cv_bridge.h>
+#include <cv_bridge/cv_bridge.hpp>
 #include <opencv2/imgproc.hpp>
 #include <sensor_msgs/msg/image.hpp>
 

@@ -20,6 +20,12 @@ KalmanFilter::KalmanFilter()
     I_ = Eigen::MatrixXd::Identity(4, 4);
 }
 
+void KalmanFilter::init(const Eigen::VectorXd & initial_state, const Eigen::MatrixXd & covariance)
+{
+    x_ = initial_state;
+    P_ = covariance;
+}
+
 
 void KalmanFilter::predict(double dt)
 {

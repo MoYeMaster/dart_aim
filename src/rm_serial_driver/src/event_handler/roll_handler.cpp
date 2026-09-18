@@ -10,7 +10,7 @@ RollHandler::RollHandler(rclcpp::Node * _node, const std::string & _name)
 void RollHandler::handleEvent(const ReceivePacket & _packet)
 {
   std_msgs::msg::Float32 roll;
-  roll.data = _packet.roll;
+  roll.data = parseRoll(_packet);
   roll_pub_->publish(roll);
 }
 }
