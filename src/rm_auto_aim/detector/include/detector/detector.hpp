@@ -12,6 +12,9 @@ struct BaseLight
 {
   cv::Point2f center;
   cv::RotatedRect ellipse;
+  float x = 0.0F;
+  float y = 0.0F;
+  float z = 0.0F;
   float diameter_px = 0.0F;
   float area_px = 0.0F;
   float circularity = 0.0F;

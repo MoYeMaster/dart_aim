@@ -93,11 +93,3 @@ namespace rm_auto_aim
 
 #include "rclcpp_components/register_node_macro.hpp"
 RCLCPP_COMPONENTS_REGISTER_NODE(rm_auto_aim::TrackerNode);
-
-int main(int argc, char ** argv)
-{
-    rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<rm_auto_aim::TrackerNode>(rclcpp::NodeOptions{}));
-    rclcpp::shutdown();
-    return 0;
-}

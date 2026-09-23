@@ -103,7 +103,7 @@ bool PnpSolver::solve(const BaseLight & light, PnpResult & result) const
   if (tvec.rows != 3 || tvec.cols != 1) {
     return false;
   }
-
+  
   const double x = tvec.at<double>(0, 0);
   const double y = tvec.at<double>(1, 0);
   const double z = tvec.at<double>(2, 0);

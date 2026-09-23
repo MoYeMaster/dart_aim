@@ -14,11 +14,11 @@
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>detector</exec_depend>
   <exec_depend>hik_camera_ros2_driver</exec_depend>
+  <exec_depend>rm_gimbal_description</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>rm_serial_driver</exec_depend>
-
-  <test_depend>ament_cmake_pytest</test_depend>
-  <test_depend>ament_lint_auto</test_depend>
-  <test_depend>ament_lint_common</test_depend>
+  <exec_depend>rm_gimbal_description</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

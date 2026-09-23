@@ -3,7 +3,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, TimerAction
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.actions import Node, PushRosNamespace
 from launch_ros.parameter_descriptions import ParameterValue
 
@@ -18,6 +18,26 @@ def generate_launch_description():
         get_package_share_directory("rm_vision_bringup"),
         "config",
         "detector_params.yaml",
+    )
+    gimbal_description = os.path.join(
+        get_package_share_directory("rm_gimbal_description"),
+        "urdf",
+        "rm_gimbal.urdf.xacro",
+    )
+
+    robot_state_publisher_node = Node(
+        package="robot_state_publisher",
+        executable="robot_state_publisher",
+        name="robot_state_publisher",
+        output="screen",
+        parameters=[
+            {
+                "robot_description": ParameterValue(
+                    Command(["xacro ", gimbal_description]),
+                    value_type=str,
+                )
+            }
+        ],
     )
 
     camera_node = Node(
@@ -78,6 +98,7 @@ def generate_launch_description():
             DeclareLaunchArgument("serial_stop_bits", default_value="1"),
             DeclareLaunchArgument("serial_log_level", default_value="info"),
             PushRosNamespace("dart"),
+            robot_state_publisher_node,
             camera_node,
             serial_driver_node,
             TimerAction(period=1.0, actions=[detector_node]),

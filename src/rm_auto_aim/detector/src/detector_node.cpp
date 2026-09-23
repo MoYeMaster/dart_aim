@@ -114,6 +114,8 @@ DetectorNode::DetectorNode(const rclcpp::NodeOptions & options)
   image_sub_ = create_subscription<sensor_msgs::msg::Image>(
     image_topic, rclcpp::SensorDataQoS(),
     std::bind(&DetectorNode::imageCallback, this, std::placeholders::_1));
+  tf_buffer_ = std::make_shared<tf2_ros::Buffer>(this->get_clock());
+  tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
 
   RCLCPP_INFO(
     get_logger(), "Detector started: camera_type=%d, physical diameter %.3f m, expected distance %.1f m",
@@ -251,8 +253,17 @@ void DetectorNode::imageCallback(const sensor_msgs::msg::Image::ConstSharedPtr &
     return;
   }
 
-  const auto detections = detector_.detect(img);
+  auto detections = detector_.detect(img);
+  for (auto & detection : detections) {
+    PnpResult result;
+    if (estimateLight(detection, result)) {
+      detection.x = static_cast<float>(result.position_x_m);
+      detection.y = static_cast<float>(result.position_y_m);
+      detection.z = static_cast<float>(result.position_z_m);
+    }
+  }
   const std::size_t selected_index = selectBaseLight(detections);
+  tf2Transform(detections[selected_index], image_msg->header.stamp);
 
   publishLightMessages(image_msg->header, detections, selected_index);
   publishDartStates(img, detections, selected_index);
@@ -338,6 +349,36 @@ void DetectorNode::publishResultImage(
   }
 
   result_image_pub_.publish(*result_image.toImageMsg());
+}
+
+void DetectorNode::tf2Transform(
+  const BaseLight & detection, const rclcpp::Time & stamp)
+{
+  if (!tf_buffer_ || !tf_listener_ ) {
+    return;
+  }
+
+  geometry_msgs::msg::PointStamped point_optical;
+  point_optical.header.frame_id = "camera_optical_frame";
+  point_optical.header.stamp = stamp;
+  point_optical.point.x = detection.x;
+  point_optical.point.y = detection.y;
+  point_optical.point.z = detection.z;
+
+  geometry_msgs::msg::PointStamped point_muzzle;
+
+  try {
+    point_muzzle = tf_buffer_->transform(point_optical, "muzzle_link");
+  } catch (const tf2::TransformException & ex) {
+    RCLCPP_WARN_THROTTLE(
+      get_logger(), *get_clock(), 5000, "Failed to transform point to muzzle_link: %s", ex.what());
+    return;
+  }
+
+  muzzle_x_ = point_muzzle.point.x;
+  muzzle_y_ = point_muzzle.point.y;
+  muzzle_z_ = point_muzzle.point.z;
+
 }
 }  // namespace rm_auto_aim
 

@@ -7,6 +7,10 @@
 #include <sensor_msgs/msg/camera_info.hpp>
 #include <sensor_msgs/msg/image.hpp>
 #include <std_msgs/msg/header.hpp>
+#include "tf2_ros/buffer.hpp"
+#include "tf2_ros/transform_listener.hpp"
+#include "tf2_geometry_msgs/tf2_geometry_msgs.hpp"
+#include "tf2/exceptions.hpp"
 
 #include <memory>
 #include <string>
@@ -44,6 +48,8 @@ private:
   void publishResultImage(
     const cv::Mat & detector_image, const std_msgs::msg::Header & header,
     const std::vector<BaseLight> & detections, std::size_t selected_index);
+  void tf2Transform(
+    const BaseLight & detection, const rclcpp::Time & stamp);
 
   Detector detector_;
   PnpSolver pnp_solver_;
@@ -60,12 +66,19 @@ private:
   double cy_ = 0.0;
   bool camera_info_received_ = false;
 
+  double muzzle_x_ = 0.0;
+  double muzzle_y_ = 0.0;
+  double muzzle_z_ = 0.0;
+
   rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_;
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr camera_info_sub_;
   rclcpp::Publisher<auto_aim_interfaces::msg::DebugLights>::SharedPtr debug_lights_pub_;
   rclcpp::Publisher<auto_aim_interfaces::msg::Lights>::SharedPtr lights_pub_;
   rclcpp::Publisher<auto_aim_interfaces::msg::DartStates>::SharedPtr dart_states_pub_;
   image_transport::Publisher result_image_pub_;
+  std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
+  std::shared_ptr<tf2_ros::TransformListener> tf_listener_;
+
 };
 
 }  // namespace rm_auto_aim
