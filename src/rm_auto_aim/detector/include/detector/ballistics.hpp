@@ -25,8 +25,12 @@ public:
   explicit BallisticCalculator(const BallisticParams & params);
 
   double calculateRequiredSpeed(double distance_m) const;
+  double calculateRequiredSpeed(
+    double distance_m, double target_height_difference_m) const;
 
   double calculateRequiredForce(double distance_m) const;
+  double calculateRequiredForce(
+    double distance_m, double target_height_difference_m) const;
 
 private:
   bool isValid() const;

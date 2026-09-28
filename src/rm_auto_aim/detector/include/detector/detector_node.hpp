@@ -7,6 +7,7 @@
 #include <sensor_msgs/msg/camera_info.hpp>
 #include <sensor_msgs/msg/image.hpp>
 #include <std_msgs/msg/header.hpp>
+#include <geometry_msgs/msg/point_stamped.hpp>
 #include "tf2_ros/buffer.hpp"
 #include "tf2_ros/transform_listener.hpp"
 #include "tf2_geometry_msgs/tf2_geometry_msgs.hpp"
@@ -41,15 +42,17 @@ private:
   bool estimateLight(const BaseLight & detection, PnpResult & result) const;
   void publishLightMessages(
     const std_msgs::msg::Header & header, const std::vector<BaseLight> & detections,
-    std::size_t selected_index);
+    const geometry_msgs::msg::PointStamped * transformed_point);
   void publishDartStates(
     const cv::Mat & detector_image, const std::vector<BaseLight> & detections,
-    std::size_t selected_index);
+    std::size_t selected_index,
+    const geometry_msgs::msg::PointStamped * transformed_point);
   void publishResultImage(
     const cv::Mat & detector_image, const std_msgs::msg::Header & header,
     const std::vector<BaseLight> & detections, std::size_t selected_index);
-  void tf2Transform(
-    const BaseLight & detection, const rclcpp::Time & stamp);
+  bool tf2Transform(
+    const BaseLight & detection, const rclcpp::Time & stamp,
+    geometry_msgs::msg::PointStamped & transformed_point);
 
   Detector detector_;
   PnpSolver pnp_solver_;
@@ -65,10 +68,6 @@ private:
   double cx_ = 0.0;
   double cy_ = 0.0;
   bool camera_info_received_ = false;
-
-  double muzzle_x_ = 0.0;
-  double muzzle_y_ = 0.0;
-  double muzzle_z_ = 0.0;
 
   rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_;
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr camera_info_sub_;

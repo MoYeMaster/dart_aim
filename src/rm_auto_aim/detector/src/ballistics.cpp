@@ -20,7 +20,15 @@ BallisticCalculator::BallisticCalculator(const BallisticParams & params)
 
 double BallisticCalculator::calculateRequiredSpeed(double distance_m) const
 {
-  if (!isValid() || distance_m <= 0.0) {
+  return calculateRequiredSpeed(distance_m, params_.target_height_difference_m);
+}
+
+double BallisticCalculator::calculateRequiredSpeed(
+  double distance_m, double target_height_difference_m) const
+{
+  if (!isValid() || !std::isfinite(distance_m) || distance_m <= 0.0 ||
+    !std::isfinite(target_height_difference_m))
+  {
     return 0.0;
   }
 
@@ -29,7 +37,7 @@ double BallisticCalculator::calculateRequiredSpeed(double distance_m) const
   const double tan_angle = std::tan(angle_rad);
   const double no_drag_denominator =
     2.0 * cos_angle * cos_angle *
-    (distance_m * tan_angle - params_.target_height_difference_m);
+    (distance_m * tan_angle - target_height_difference_m);
 
   if (params_.air_density_kg_m3 <= 0.0 ||
     params_.drag_coefficient <= 0.0 || params_.cross_section_area_m2 <= 0.0)
@@ -57,7 +65,7 @@ double BallisticCalculator::calculateRequiredSpeed(double distance_m) const
       continue;
     }
 
-    const double error = height_m - params_.target_height_difference_m;
+    const double error = height_m - target_height_difference_m;
     if (std::abs(error) < best_error) {
       best_error = std::abs(error);
       best_speed = speed;
@@ -77,7 +85,7 @@ double BallisticCalculator::calculateRequiredSpeed(double distance_m) const
         }
 
         const double middle_error =
-          middle_height_m - params_.target_height_difference_m;
+          middle_height_m - target_height_difference_m;
         if (std::abs(middle_error) < kHeightToleranceM) {
           return middle_speed;
         }
@@ -105,11 +113,18 @@ double BallisticCalculator::calculateRequiredSpeed(double distance_m) const
 
 double BallisticCalculator::calculateRequiredForce(double distance_m) const
 {
+  return calculateRequiredForce(distance_m, params_.target_height_difference_m);
+}
+
+double BallisticCalculator::calculateRequiredForce(
+  double distance_m, double target_height_difference_m) const
+{
   if (!isValid()) {
     return 0.0;
   }
 
-  const double required_speed_mps = calculateRequiredSpeed(distance_m);
+  const double required_speed_mps =
+    calculateRequiredSpeed(distance_m, target_height_difference_m);
   if (required_speed_mps <= 0.0) {
     return 0.0;
   }
@@ -125,7 +140,6 @@ bool BallisticCalculator::isValid() const
          std::isfinite(params_.cross_section_area_m2) &&
          std::isfinite(params_.drag_coefficient) &&
          std::isfinite(params_.air_density_kg_m3) &&
-         std::isfinite(params_.target_height_difference_m) &&
          std::isfinite(params_.launch_angle_deg) &&
          std::isfinite(params_.spring_effective_stroke_m) &&
          std::isfinite(params_.launch_efficiency) &&

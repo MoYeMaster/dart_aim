@@ -263,16 +263,20 @@ void DetectorNode::imageCallback(const sensor_msgs::msg::Image::ConstSharedPtr &
     }
   }
   const std::size_t selected_index = selectBaseLight(detections);
-  tf2Transform(detections[selected_index], image_msg->header.stamp);
+  geometry_msgs::msg::PointStamped transformed_point;
+  const bool has_transformed_point =
+    selected_index != kNoSelection && selected_index < detections.size() &&
+    tf2Transform(detections[selected_index], image_msg->header.stamp, transformed_point);
+  const auto * transformed_point_ptr = has_transformed_point ? &transformed_point : nullptr;
 
-  publishLightMessages(image_msg->header, detections, selected_index);
-  publishDartStates(img, detections, selected_index);
+  publishLightMessages(image_msg->header, detections, transformed_point_ptr);
+  publishDartStates(img, detections, selected_index, transformed_point_ptr);
   publishResultImage(img, image_msg->header, detections, selected_index);
 }
 
 void DetectorNode::publishLightMessages(
   const std_msgs::msg::Header & header, const std::vector<BaseLight> & detections,
-  std::size_t selected_index)
+  const geometry_msgs::msg::PointStamped * transformed_point)
 {
   auto_aim_interfaces::msg::DebugLights debug_msg;
   for (const auto & detection : detections) {
@@ -284,25 +288,27 @@ void DetectorNode::publishLightMessages(
 
   auto_aim_interfaces::msg::Lights lights_msg;
   lights_msg.header = header;
-  if (selected_index != kNoSelection && selected_index < detections.size()) {
-    const auto & detection = detections[selected_index];
-    PnpResult result;
-    if (estimateLight(detection, result)) {
-      auto_aim_interfaces::msg::Light light_msg;
-      light_msg.pose.position.x = result.position_x_m;
-      light_msg.pose.position.y = result.position_y_m;
-      light_msg.pose.position.z = result.position_z_m;
-      light_msg.pose.orientation.w = 1.0;
-      light_msg.distance = static_cast<float>(result.distance_m);
-      lights_msg.lights.push_back(light_msg);
-    }
+  if (transformed_point != nullptr) {
+    lights_msg.header.frame_id = transformed_point->header.frame_id;
+    auto_aim_interfaces::msg::Light light_msg;
+    light_msg.pose.position.x = transformed_point->point.x;
+    light_msg.pose.position.y = transformed_point->point.y;
+    light_msg.pose.position.z = transformed_point->point.z;
+    light_msg.pose.orientation.w = 1.0;
+    light_msg.distance = static_cast<float>(
+      std::sqrt(
+        transformed_point->point.x * transformed_point->point.x +
+        transformed_point->point.y * transformed_point->point.y +
+        transformed_point->point.z * transformed_point->point.z));
+    lights_msg.lights.push_back(light_msg);
   }
   lights_pub_->publish(lights_msg);
 }
 
 void DetectorNode::publishDartStates(
   const cv::Mat & detector_image, const std::vector<BaseLight> & detections,
-  std::size_t selected_index)
+  std::size_t selected_index,
+  const geometry_msgs::msg::PointStamped * transformed_point)
 {
   auto_aim_interfaces::msg::DartStates dart_states_pub;
   if (selected_index != kNoSelection && selected_index < detections.size()) {
@@ -313,10 +319,10 @@ void DetectorNode::publishDartStates(
     dart_states_pub.is_middle = state.is_middle;
     dart_states_pub.dyaw = 999.0;
 
-    PnpResult result;
-    if (estimateLight(detection, result)) {
+    if (transformed_point != nullptr) {
       dart_states_pub.force =
-        ballistic_calculator_.calculateRequiredForce(result.distance_m);
+        ballistic_calculator_.calculateRequiredForce(
+          transformed_point->point.x, transformed_point->point.z);
     }
   }
   dart_states_pub_->publish(dart_states_pub);
@@ -351,11 +357,12 @@ void DetectorNode::publishResultImage(
   result_image_pub_.publish(*result_image.toImageMsg());
 }
 
-void DetectorNode::tf2Transform(
-  const BaseLight & detection, const rclcpp::Time & stamp)
+bool DetectorNode::tf2Transform(
+  const BaseLight & detection, const rclcpp::Time & stamp,
+  geometry_msgs::msg::PointStamped & transformed_point)
 {
-  if (!tf_buffer_ || !tf_listener_ ) {
-    return;
+  if (!tf_buffer_ || !tf_listener_) {
+    return false;
   }
 
   geometry_msgs::msg::PointStamped point_optical;
@@ -365,20 +372,15 @@ void DetectorNode::tf2Transform(
   point_optical.point.y = detection.y;
   point_optical.point.z = detection.z;
 
-  geometry_msgs::msg::PointStamped point_muzzle;
-
   try {
-    point_muzzle = tf_buffer_->transform(point_optical, "muzzle_link");
+    transformed_point = tf_buffer_->transform(point_optical, "muzzle_link");
   } catch (const tf2::TransformException & ex) {
     RCLCPP_WARN_THROTTLE(
       get_logger(), *get_clock(), 5000, "Failed to transform point to muzzle_link: %s", ex.what());
-    return;
+    return false;
   }
 
-  muzzle_x_ = point_muzzle.point.x;
-  muzzle_y_ = point_muzzle.point.y;
-  muzzle_z_ = point_muzzle.point.z;
-
+  return true;
 }
 }  // namespace rm_auto_aim
 
