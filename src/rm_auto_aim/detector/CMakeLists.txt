@@ -55,6 +55,7 @@ rclcpp_components_register_node(${PROJECT_NAME}
   EXECUTABLE detector_node
 )
 
+
 install(
   TARGETS ${PROJECT_NAME}
   ARCHIVE DESTINATION lib
@@ -65,6 +66,11 @@ install(
 install(
   DIRECTORY include/
   DESTINATION include
+)
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
 )
 
 ament_export_dependencies(
@@ -79,4 +85,5 @@ ament_export_dependencies(
   geometry_msgs
 )
 
+ament_export_include_directories(include)
 ament_package()

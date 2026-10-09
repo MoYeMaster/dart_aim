@@ -15,12 +15,12 @@ find_package(Eigen3 REQUIRED)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Light.msg"
   "msg/Lights.msg"
-  "msg/Target.msg"
   "msg/DartStates.msg"
+  "msg/DartDetection.msg"
+  "msg/DartDetections.msg"
 
   "msg/DebugLight.msg"
   "msg/DebugLights.msg"
-  "msg/TrackerInfo.msg"
 
   "msg/TimeInfo.msg"
 

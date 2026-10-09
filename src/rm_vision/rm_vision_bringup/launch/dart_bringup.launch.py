@@ -57,11 +57,23 @@ def generate_launch_description():
         executable="detector_node",
         name="detector",
         output="screen",
-        parameters=[detector_params],
+        parameters=[detector_params, {"dart_states_topic": "detector/vision_dart_states"}],
         arguments=[
             "--ros-args",
             "--log-level",
             ["detector:=", LaunchConfiguration("detector_log_level")],
+        ],
+    )
+    tracker_node = Node(
+        package="tracker",
+        executable="tracker_node",
+        name="tracker",
+        output="screen",
+        parameters=[{"dart_states_topic": "detector/dart_states"}],
+        arguments=[
+            "--ros-args",
+            "--log-level",
+            ["tracker_node:=", LaunchConfiguration("tracker_log_level")],
         ],
     )
     serial_driver_node = Node(
@@ -75,6 +87,7 @@ def generate_launch_description():
                 "baud_rate": LaunchConfiguration("serial_baud_rate"),
                 "flow_control": LaunchConfiguration("serial_flow_control"),
                 "parity": LaunchConfiguration("serial_parity"),
+                "dart_states_topic": "detector/dart_states",
                 "stop_bits": ParameterValue(
                     LaunchConfiguration("serial_stop_bits"), value_type=str
                 ),
@@ -91,7 +104,8 @@ def generate_launch_description():
         [
             DeclareLaunchArgument("camera_log_level", default_value="info"),
             DeclareLaunchArgument("detector_log_level", default_value="info"),
-            DeclareLaunchArgument("serial_device", default_value="/dev/ttyACM0"),
+            DeclareLaunchArgument("tracker_log_level", default_value="info"),
+            DeclareLaunchArgument("serial_device", default_value="/dev/ttyUSB0"),
             DeclareLaunchArgument("serial_baud_rate", default_value="115200"),
             DeclareLaunchArgument("serial_flow_control", default_value="none"),
             DeclareLaunchArgument("serial_parity", default_value="none"),
@@ -101,6 +115,7 @@ def generate_launch_description():
             robot_state_publisher_node,
             camera_node,
             serial_driver_node,
+            tracker_node,
             TimerAction(period=1.0, actions=[detector_node]),
         ]
     )
