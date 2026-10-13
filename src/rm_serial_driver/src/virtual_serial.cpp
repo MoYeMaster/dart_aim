@@ -60,7 +60,7 @@ ReceivePacket VirtualSerialNode::getVirtualPacket()
   ReceivePacket virtual_packet{};
   virtual_packet.header = 0x5A;
   const float roll = static_cast<float>(this->get_parameter("virtual_roll").as_double());
-  std::memcpy(virtual_packet.data, &roll, sizeof(roll));
+  writeFloat<0>(virtual_packet, roll);
 
   return virtual_packet;
 }

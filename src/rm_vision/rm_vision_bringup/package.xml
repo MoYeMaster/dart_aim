@@ -13,6 +13,7 @@
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>detector</exec_depend>
+  <exec_depend>dart_detector</exec_depend>
   <exec_depend>tracker</exec_depend>
   <exec_depend>hik_camera_ros2_driver</exec_depend>
   <exec_depend>rm_gimbal_description</exec_depend>

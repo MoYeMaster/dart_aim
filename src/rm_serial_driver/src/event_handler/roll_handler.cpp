@@ -1,4 +1,4 @@
-#include "rm_serial_driver/event_handler/roll_handler.hpp"
+#include "rm_serial_driver/serial_data.hpp"
 
 namespace rm_serial_driver::handler
 {
@@ -10,7 +10,7 @@ RollHandler::RollHandler(rclcpp::Node * _node, const std::string & _name)
 void RollHandler::handleEvent(const ReceivePacket & _packet)
 {
   std_msgs::msg::Float32 roll;
-  roll.data = parseRoll(_packet);
+  roll.data = readFloat<0>(_packet);
   roll_pub_->publish(roll);
 }
 }

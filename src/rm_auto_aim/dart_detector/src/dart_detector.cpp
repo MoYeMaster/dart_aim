@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <utility>
 
 namespace rm_auto_aim
 {
@@ -61,15 +62,16 @@ namespace rm_auto_aim
   }
 
   std::vector<auto_aim_interfaces::msg::DartDetection> DartDetector::detect(
-      const cv::Mat &img_color, const cv::Mat &img_gray) const
+      const cv::Mat &img_color, const cv::Mat &img_gray,
+      std::vector<cv::RotatedRect> * boxes) const
   {
-    std::vector<auto_aim_interfaces::msg::DartDetection> detections;
+    std::vector<std::pair<auto_aim_interfaces::msg::DartDetection, cv::RotatedRect>> candidates;
 
     const cv::Mat binary = preprocess(img_gray);
     std::vector<std::vector<cv::Point>> contours;
     cv::findContours(binary, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
 
-    detections.reserve(contours.size());
+    candidates.reserve(contours.size());
     for (const auto &contour : contours)
     {
       const double area = cv::contourArea(contour);
@@ -116,15 +118,27 @@ namespace rm_auto_aim
       detection.pixel_width = static_cast<float>(box.size.width);
       detection.pixel_height = static_cast<float>(box.size.height);
       detection.confidence = static_cast<float>(fill_ratio);
-      detections.push_back(detection);
+      candidates.emplace_back(detection, box);
     }
 
     std::sort(
-        detections.begin(), detections.end(),
+        candidates.begin(), candidates.end(),
         [](const auto &lhs, const auto &rhs)
         {
-          return lhs.confidence > rhs.confidence;
+          return lhs.first.confidence > rhs.first.confidence;
         });
+    std::vector<auto_aim_interfaces::msg::DartDetection> detections;
+    detections.reserve(candidates.size());
+    if (boxes) {
+      boxes->clear();
+      boxes->reserve(candidates.size());
+    }
+    for (const auto & candidate : candidates) {
+      detections.push_back(candidate.first);
+      if (boxes) {
+        boxes->push_back(candidate.second);
+      }
+    }
     return detections;
   }
 

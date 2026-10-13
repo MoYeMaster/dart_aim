@@ -24,6 +24,11 @@ def generate_launch_description():
         "urdf",
         "rm_gimbal.urdf.xacro",
     )
+    dart_detector_params = os.path.join(
+        get_package_share_directory("rm_vision_bringup"),
+        "config",
+        "dart_detector_params.yaml",
+    )
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
@@ -45,7 +50,7 @@ def generate_launch_description():
         executable="hik_camera_ros2_driver_node",
         name="camera_node",
         output="screen",
-        parameters=[camera_params],
+        parameters=[camera_params, {"frame_id": "camera_optical_frame"}],
         arguments=[
             "--ros-args",
             "--log-level",
@@ -63,6 +68,13 @@ def generate_launch_description():
             "--log-level",
             ["detector:=", LaunchConfiguration("detector_log_level")],
         ],
+    )
+    dart_detector_node = Node(
+        package="dart_detector",
+        executable="dart_detector_node",
+        name="dart_detector",
+        output="screen",
+        parameters=[dart_detector_params],
     )
     tracker_node = Node(
         package="tracker",
@@ -116,6 +128,6 @@ def generate_launch_description():
             camera_node,
             serial_driver_node,
             tracker_node,
-            TimerAction(period=1.0, actions=[detector_node]),
+            TimerAction(period=1.0, actions=[detector_node, dart_detector_node]),
         ]
     )

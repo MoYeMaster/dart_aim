@@ -1,0 +1,8 @@
+/**:
+  ros__parameters:
+    image_topic: image_raw
+    camera_info_topic: camera_info
+    dart_detections_topic: dart_detector/detections
+    target_frame: muzzle_link
+    dart_length_m: 0.0
+    dart_width_m: 0.0

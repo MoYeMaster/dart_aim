@@ -123,7 +123,7 @@ void SerialDriverNode::receiveData()
       RCLCPP_INFO_THROTTLE(
         get_logger(), *get_clock(), 1000,
         "Received valid packet: flags=0x%02X, roll=%.3f",
-        packet.flags, parseRoll(packet));
+        packet.flags, readFloat<0>(packet));
 
       for (const auto & handler : handlers_) {
         handler->handle(packet);

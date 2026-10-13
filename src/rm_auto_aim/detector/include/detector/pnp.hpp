@@ -43,6 +43,9 @@ public:
   double estimateDistance(double diameter_px) const;
 
   bool solve(const BaseLight & light, PnpResult & result) const;
+  bool solve(
+    const std::vector<cv::Point3f> & object_points,
+    const std::vector<cv::Point2f> & image_points, PnpResult & result) const;
 
 private:
   bool hasValidCameraModel() const;

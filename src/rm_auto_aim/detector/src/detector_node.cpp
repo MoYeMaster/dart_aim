@@ -168,24 +168,22 @@ BallisticParams DetectorNode::declareBallisticParams()
 }
 
 void DetectorNode::cameraInfoCallback(
-  const sensor_msgs::msg::CameraInfo::ConstSharedPtr & camera_info_msg)
+  const sensor_msgs::msg::CameraInfo::ConstSharedPtr & info)
 {
-  if (camera_info_msg->k[0] <= 0.0 || camera_info_msg->k[4] <= 0.0 ||
-    camera_info_msg->k[8] <= 0.0)
+  if (info->k[0] <= 0.0 || info->k[4] <= 0.0 ||
+    info->k[8] <= 0.0)
   {
     RCLCPP_WARN_THROTTLE(get_logger(), *get_clock(), 5000, "Ignoring invalid camera intrinsics");
     return;
   }
 
-  fx_ = camera_info_msg->k[0];
-  fy_ = camera_info_msg->k[4];
-  cx_ = camera_info_msg->k[2];
-  cy_ = camera_info_msg->k[5];
+  fx_ = info->k[0];
+  fy_ = info->k[4];
+  cx_ = info->k[2];
+  cy_ = info->k[5];
   camera_info_received_ = true;
 
-  std::array<double, 9> camera_matrix{};
-  std::copy(camera_info_msg->k.begin(), camera_info_msg->k.end(), camera_matrix.begin());
-  pnp_solver_.setCameraInfo(camera_matrix, camera_info_msg->d);
+  pnp_solver_.setCameraInfo(info->k, info->d);
 }
 
 std::size_t DetectorNode::selectBaseLight(const std::vector<BaseLight> & detections) const

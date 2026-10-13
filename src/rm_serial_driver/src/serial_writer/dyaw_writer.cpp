@@ -1,6 +1,6 @@
 #include <utility>
 
-#include "rm_serial_driver/serial_writer/dyaw_writer.hpp"
+#include "rm_serial_driver/serial_data.hpp"
 
 namespace rm_serial_driver::writer
 {
@@ -27,7 +27,7 @@ void DyawWriter::dyawSubCallback(
     return;
   }
 
-  writeSerial_(rm_serial_driver::makeDyawPacket(_message->dyaw));
+  writeSerial_(rm_serial_driver::makeDataPacket(_message->dyaw));
 }
 
 }  // namespace rm_serial_driver::writer

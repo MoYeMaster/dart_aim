@@ -87,6 +87,20 @@ bool PnpSolver::solve(const BaseLight & light, PnpResult & result) const
     light.center - vertical_axis,
     light.center + vertical_axis};
 
+  return solve(object_points, image_points, result);
+}
+
+bool PnpSolver::solve(
+  const std::vector<cv::Point3f> & object_points,
+  const std::vector<cv::Point2f> & image_points, PnpResult & result) const
+{
+  result = PnpResult{};
+  if (!hasValidCameraModel() || object_points.size() < 4 ||
+    object_points.size() != image_points.size())
+  {
+    return false;
+  }
+
   cv::Mat rvec;
   cv::Mat tvec;
   try {

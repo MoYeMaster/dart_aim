@@ -44,7 +44,9 @@ public:
 
   explicit DartDetector(const Params & params);
 
-  std::vector<auto_aim_interfaces::msg::DartDetection> detect(const cv::Mat & img_color,const cv::Mat & img_gray) const;
+  std::vector<auto_aim_interfaces::msg::DartDetection> detect(
+    const cv::Mat & img_color, const cv::Mat & img_gray,
+    std::vector<cv::RotatedRect> * boxes = nullptr) const;
 
   cv::Mat preprocess(const cv::Mat & img) const;
 
