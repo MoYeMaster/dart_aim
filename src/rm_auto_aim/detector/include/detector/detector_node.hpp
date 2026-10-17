@@ -73,7 +73,7 @@ private:
 
   rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_;
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr camera_info_sub_;
-  rclcpp::Subscription<std_msgs::msg::Float32>state_sub_;
+  rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr state_sub_;
   rclcpp::Publisher<auto_aim_interfaces::msg::DebugLights>::SharedPtr debug_lights_pub_;
   rclcpp::Publisher<auto_aim_interfaces::msg::Lights>::SharedPtr lights_pub_;
   rclcpp::Publisher<auto_aim_interfaces::msg::DartStates>::SharedPtr dart_states_pub_;

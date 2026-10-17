@@ -1,0 +1,65 @@
+lidar_dart_node:
+  ros__parameters:
+    lidar_topic: "/livox/lidar"
+    map_path: ""
+    scan_duration: 0.1
+    qos_depth: 10
+
+    muzzle_world:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      roll: 0.0
+      pitch: 0.0
+      yaw: 0.0
+
+    extrinsics:
+      lidar_to_gimbal:
+        x: 0.0
+        y: 0.0
+        z: 0.18
+        roll: 0.0
+        pitch: 0.0
+        yaw: 0.0
+      gimbal_to_muzzle:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+        roll: 0.0
+        pitch: 0.0
+        yaw: 0.0
+
+    preprocess:
+      min_range: 0.2
+      max_range: 25.0
+      roi_yaw_min_deg: -45.0
+      roi_yaw_max_deg: 45.0
+      roi_pitch_min_deg: -30.0
+      roi_pitch_max_deg: 30.0
+      sor_k: 20
+      sor_std_ratio: 2.0
+
+    icp:
+      max_iterations: 50
+      transformation_epsilon: 1.0e-6
+      max_correspondence_dist: 1.0
+
+    target:
+      distance_threshold: 0.05
+      min_inliers: 10
+      quality_inliers: 50
+
+    ekf:
+      initial_x: 0.0
+      initial_y: 10.0
+      initial_z: 1.0
+      initial_covariance: 1.0
+      process_noise_pos: 0.01
+      process_noise_vel: 0.05
+      lidar_noise: 0.05
+      camera_noise_az: 0.005
+      camera_noise_el: 0.005
+
+    fire:
+      min_confidence: 0.6
+      min_inliers: 10

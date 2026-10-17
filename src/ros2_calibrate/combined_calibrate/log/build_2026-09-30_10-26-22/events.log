@@ -1,0 +1,309 @@
+[0.000000] (-) TimerEvent: {}
+[0.000090] (combined_calibrate) JobQueued: {'identifier': 'combined_calibrate', 'dependencies': OrderedDict()}
+[0.000113] (combined_calibrate) JobStarted: {'identifier': 'combined_calibrate'}
+[0.006288] (combined_calibrate) JobProgress: {'identifier': 'combined_calibrate', 'progress': 'cmake'}
+[0.006728] (combined_calibrate) Command: {'cmd': ['/usr/bin/cmake', '/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate', '-DCMAKE_INSTALL_PREFIX=/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate'], 'cwd': '/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/build/combined_calibrate', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'anyi'), ('LANGUAGE', 'zh_CN:en'), ('LC_TIME', 'en_US.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('ALLUSERSPROFILE', '/opt/MVS/MVFG'), ('LD_LIBRARY_PATH', '/usr/local/cuda-13.3/lib64:/opt/MVS/lib/64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-13.0/lib64:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:'), ('SHLVL', '1'), ('HOME', '/home/anyi'), ('OLDPWD', '/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate'), ('LESS', '-R'), ('CONDA_SHLVL', '0'), ('DESKTOP_SESSION', 'ubuntu'), ('ZSH', '/home/anyi/.oh-my-zsh'), ('LSCOLORS', 'Gxfxcxdxbxegedabagacad'), ('GTK_MODULES', 'gail:atk-bridge'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('PAGER', 'less'), ('ROS_PYTHON_VERSION', '3'), ('LC_MONETARY', 'en_US.UTF-8'), ('SYSTEMD_EXEC_PID', '2392'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=7f0985f7582ec6e8d61725d66abc67c1'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/anyi/anaconda3'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'anyi'), ('GTK_IM_MODULE', 'ibus'), ('_', '/usr/bin/colcon'), ('XDG_SESSION_CLASS', 'user'), ('ROS_VERSION', '2'), ('USERNAME', 'anyi'), ('TERM', 'xterm-256color'), ('TF_ENABLE_ONEDNN_OPTS', '0'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('MVCAM_SDK_PATH', '/opt/MVS'), ('WINDOWPATH', '2'), ('PATH', '/usr/local/cuda-13.3/bin:/home/anyi/node-v20.15.1-linux-x64/bin:/usr/bin:/opt/ros/humble/bin:/usr/local/cuda-13.0/bin:/home/anyi/anaconda3/condabin:/home/anyi/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/anyi/MAIXCDK/tools/maixtool/maixtool'), ('SESSION_MANAGER', 'local/anyi:@/tmp/.ICE-unix/2392,unix/anyi:/tmp/.ICE-unix/2392'), ('PAPERSIZE', 'letter'), ('MVCAM_GENICAM_CLPROTOCOL', '/opt/MVS/lib/CLProtocol'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LC_ADDRESS', 'en_US.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/289bef9e_fd5e_44e0_a58a_324065b6b599'), ('XDG_MENU_PREFIX', 'gnome-'), ('DISPLAY', ':1'), ('LC_TELEPHONE', 'en_US.UTF-8'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('GNOME_TERMINAL_SERVICE', ':1.177'), ('XMODIFIERS', '@im=ibus'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('CONDA_PYTHON_EXE', '/home/anyi/anaconda3/bin/python'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('LC_NAME', 'en_US.UTF-8'), ('SHELL', '/bin/zsh'), ('GDMSESSION', 'ubuntu'), ('QT_ACCESSIBILITY', '1'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'en_US.UTF-8'), ('GCC_COLORS', 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'en_US.UTF-8'), ('_CONDA_EXE', '/home/anyi/anaconda3/bin/conda'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/build/combined_calibrate'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=7f0985f7582ec6e8d61725d66abc67c1'), ('CONDA_EXE', '/home/anyi/anaconda3/bin/conda'), ('LC_NUMERIC', 'en_US.UTF-8'), ('MVCAM_SDK_VERSION', ''), ('MAIXCDK_PATH', '/home/anyi/MaixCDK'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_PAPER', 'en_US.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('MVCAM_COMMON_RUNENV', '/opt/MVS/lib'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.049670] (combined_calibrate) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.083335] (combined_calibrate) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.087242] (combined_calibrate) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.099828] (-) TimerEvent: {}
+[0.133949] (combined_calibrate) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.139930] (combined_calibrate) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.140097] (combined_calibrate) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.140576] (combined_calibrate) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.142534] (combined_calibrate) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.192565] (combined_calibrate) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.198439] (combined_calibrate) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.198591] (combined_calibrate) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.198773] (combined_calibrate) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.199973] (-) TimerEvent: {}
+[0.202532] (combined_calibrate) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.298662] (combined_calibrate) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.300148] (-) TimerEvent: {}
+[0.357784] (combined_calibrate) StdoutLine: {'line': b'-- Found rclcpp: 16.0.19 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.387710] (combined_calibrate) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.9 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.390505] (combined_calibrate) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.9 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.397019] (combined_calibrate) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.9 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.400349] (-) TimerEvent: {}
+[0.406419] (combined_calibrate) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.417838] (combined_calibrate) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.448437] (combined_calibrate) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.3 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.450417] (combined_calibrate) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.500543] (-) TimerEvent: {}
+[0.510488] (combined_calibrate) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[0.526544] (combined_calibrate) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[0.550874] (combined_calibrate) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.557547] (combined_calibrate) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[0.600682] (-) TimerEvent: {}
+[0.607340] (combined_calibrate) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[0.607634] (combined_calibrate) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[0.657162] (combined_calibrate) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[0.658018] (combined_calibrate) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[0.693703] (combined_calibrate) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.2 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[0.700935] (-) TimerEvent: {}
+[0.714511] (combined_calibrate) StdoutLine: {'line': b'-- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)\n'}
+[0.720579] (combined_calibrate) StdoutLine: {'line': b'-- Found OpenCV: /usr (found version "4.5.4") found components: core imgproc imgcodecs highgui calib3d \n'}
+[0.728215] (combined_calibrate) StdoutLine: {'line': b"-- Checking for module 'eigen3'\n"}
+[0.737860] (combined_calibrate) StdoutLine: {'line': b'--   Found eigen3, version 3.4.0\n'}
+[0.763991] (combined_calibrate) StdoutLine: {'line': b'-- Found Eigen: /usr/include/eigen3 (Required is at least version "3.1") \n'}
+[0.764151] (combined_calibrate) StdoutLine: {'line': b'-- Eigen found (include: /usr/include/eigen3, version: 3.4.0)\n'}
+[0.781555] (combined_calibrate) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found suitable version "1.74.0", minimum required is "1.65.0") found components: system filesystem date_time iostreams serialization \n'}
+[0.801183] (-) TimerEvent: {}
+[0.822414] (combined_calibrate) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[0.831821] (combined_calibrate) StdoutLine: {'line': b'--   Found libusb-1.0, version 1.0.25\n'}
+[0.858402] (combined_calibrate) StdoutLine: {'line': b'-- Found libusb: /usr/lib/x86_64-linux-gnu/libusb-1.0.so  \n'}
+[0.859336] (combined_calibrate) StdoutLine: {'line': b'-- Found OpenNI: /usr/lib/libOpenNI.so;libusb::libusb (found version "1.5.4.0") \n'}
+[0.859390] (combined_calibrate) StdoutLine: {'line': b'-- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)\n'}
+[0.897852] (combined_calibrate) StdoutLine: {'line': b'-- Found OpenNI2: /usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb (found version "2.2.0.33") \n'}
+[0.897917] (combined_calibrate) StdoutLine: {'line': b'-- OpenNI2 found (version: 2.2.0.33, include: /usr/include/openni2, lib: /usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb)\n'}
+[0.897979] (combined_calibrate) StderrLine: {'line': b'\x1b[0m** WARNING ** io features related to pcap will be disabled\x1b[0m\n'}
+[0.898011] (combined_calibrate) StderrLine: {'line': b'\x1b[0m** WARNING ** io features related to png will be disabled\x1b[0m\n'}
+[0.901410] (-) TimerEvent: {}
+[0.920255] (combined_calibrate) StdoutLine: {'line': b'-- Found GLEW: /usr/lib/x86_64-linux-gnu/libGLEW.so  \n'}
+[0.924317] (combined_calibrate) StdoutLine: {'line': b'-- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so  found components: OpenGL GLX \n'}
+[1.001486] (-) TimerEvent: {}
+[1.026230] (combined_calibrate) StdoutLine: {'line': b'-- Found MPI_C: /usr/lib/x86_64-linux-gnu/libmpi.so (found version "3.1") \n'}
+[1.026410] (combined_calibrate) StdoutLine: {'line': b'-- Found MPI: TRUE (found version "3.1") found components: C \n'}
+[1.029520] (combined_calibrate) StdoutLine: {'line': b'-- Found JsonCpp: /usr/lib/x86_64-linux-gnu/libjsoncpp.so (found suitable version "1.9.5", minimum required is "0.7.0") \n'}
+[1.034534] (combined_calibrate) StdoutLine: {'line': b'-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.2.11") \n'}
+[1.044272] (combined_calibrate) StdoutLine: {'line': b'-- Found PNG: /usr/lib/x86_64-linux-gnu/libpng.so (found version "1.6.37") \n'}
+[1.060876] (combined_calibrate) StdoutLine: {'line': b'-- Found Eigen3: /usr/include/eigen3 (found version "3.4.0") \n'}
+[1.101589] (-) TimerEvent: {}
+[1.117323] (combined_calibrate) StdoutLine: {'line': b'-- Found X11: /usr/include   \n'}
+[1.117447] (combined_calibrate) StdoutLine: {'line': b'-- Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so\n'}
+[1.163607] (combined_calibrate) StdoutLine: {'line': b'-- Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so - found\n'}
+[1.163735] (combined_calibrate) StdoutLine: {'line': b'-- Looking for gethostbyname\n'}
+[1.201748] (-) TimerEvent: {}
+[1.209129] (combined_calibrate) StdoutLine: {'line': b'-- Looking for gethostbyname - found\n'}
+[1.209281] (combined_calibrate) StdoutLine: {'line': b'-- Looking for connect\n'}
+[1.258436] (combined_calibrate) StdoutLine: {'line': b'-- Looking for connect - found\n'}
+[1.258571] (combined_calibrate) StdoutLine: {'line': b'-- Looking for remove\n'}
+[1.301902] (-) TimerEvent: {}
+[1.302593] (combined_calibrate) StdoutLine: {'line': b'-- Looking for remove - found\n'}
+[1.302900] (combined_calibrate) StdoutLine: {'line': b'-- Looking for shmat\n'}
+[1.349767] (combined_calibrate) StdoutLine: {'line': b'-- Looking for shmat - found\n'}
+[1.349994] (combined_calibrate) StdoutLine: {'line': b'-- Looking for IceConnectionNumber in ICE\n'}
+[1.395508] (combined_calibrate) StdoutLine: {'line': b'-- Looking for IceConnectionNumber in ICE - found\n'}
+[1.402006] (-) TimerEvent: {}
+[1.446770] (combined_calibrate) StdoutLine: {'line': b'-- Found EXPAT: /usr/lib/x86_64-linux-gnu/libexpat.so (found version "2.4.7") \n'}
+[1.448758] (combined_calibrate) StdoutLine: {'line': b'-- Found double-conversion: /usr/lib/x86_64-linux-gnu/libdouble-conversion.so  \n'}
+[1.451382] (combined_calibrate) StdoutLine: {'line': b'-- Found LZ4: /usr/lib/x86_64-linux-gnu/liblz4.so (found version "1.9.3") \n'}
+[1.453132] (combined_calibrate) StdoutLine: {'line': b'-- Found LZMA: /usr/lib/x86_64-linux-gnu/liblzma.so (found version "5.2.5") \n'}
+[1.491120] (combined_calibrate) StdoutLine: {'line': b'-- Found JPEG: /usr/lib/x86_64-linux-gnu/libjpeg.so (found version "80") \n'}
+[1.494410] (combined_calibrate) StdoutLine: {'line': b'-- Found TIFF: /usr/lib/x86_64-linux-gnu/libtiff.so (found version "4.3.0")  \n'}
+[1.496636] (combined_calibrate) StdoutLine: {'line': b'-- Found Freetype: /usr/lib/x86_64-linux-gnu/libfreetype.so (found version "2.11.1") \n'}
+[1.500023] (combined_calibrate) StdoutLine: {'line': b'-- Found utf8cpp: /usr/include/utf8cpp  \n'}
+[1.502185] (-) TimerEvent: {}
+[1.521295] (combined_calibrate) StdoutLine: {'line': b'-- Eigen found (include: /usr/include/eigen3, version: 3.4.0)\n'}
+[1.521440] (combined_calibrate) StdoutLine: {'line': b'-- looking for PCL_COMMON\n'}
+[1.521798] (combined_calibrate) StdoutLine: {'line': b'-- Found PCL_COMMON: /usr/lib/x86_64-linux-gnu/libpcl_common.so  \n'}
+[1.521870] (combined_calibrate) StdoutLine: {'line': b'-- looking for PCL_OCTREE\n'}
+[1.522261] (combined_calibrate) StdoutLine: {'line': b'-- Found PCL_OCTREE: /usr/lib/x86_64-linux-gnu/libpcl_octree.so  \n'}
+[1.522406] (combined_calibrate) StdoutLine: {'line': b'-- looking for PCL_IO\n'}
+[1.522862] (combined_calibrate) StdoutLine: {'line': b'-- Found PCL_IO: /usr/lib/x86_64-linux-gnu/libpcl_io.so  \n'}
+[1.522991] (combined_calibrate) StdoutLine: {'line': b'-- Found PCL: pcl_common;pcl_octree;pcl_io;Boost::system;Boost::filesystem;Boost::date_time;Boost::iostreams;Boost::serialization;/usr/lib/libOpenNI.so;libusb::libusb;/usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb;VTK::ChartsCore;VTK::CommonColor;VTK::CommonComputationalGeometry;VTK::CommonCore;VTK::CommonDataModel;VTK::CommonExecutionModel;VTK::CommonMath;VTK::CommonMisc;VTK::CommonTransforms;VTK::FiltersCore;VTK::FiltersExtraction;VTK::FiltersGeneral;VTK::FiltersGeometry;VTK::FiltersModeling;VTK::FiltersSources;VTK::ImagingCore;VTK::ImagingSources;VTK::InteractionImage;VTK::InteractionStyle;VTK::InteractionWidgets;VTK::IOCore;VTK::IOGeometry;VTK::IOImage;VTK::IOLegacy;VTK::IOPLY;VTK::RenderingAnnotation;VTK::RenderingCore;VTK::RenderingContext2D;VTK::RenderingLOD;VTK::RenderingFreeType;VTK::ViewsCore;VTK::ViewsContext2D;VTK::RenderingOpenGL2;VTK::GUISupportQt  \n'}
+[1.557548] (combined_calibrate) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.581180] (combined_calibrate) StdoutLine: {'line': b'-- Generating done\n'}
+[1.588200] (combined_calibrate) StdoutLine: {'line': b'-- Build files have been written to: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/build/combined_calibrate\n'}
+[1.597987] (combined_calibrate) CommandEnded: {'returncode': 0}
+[1.598683] (combined_calibrate) JobProgress: {'identifier': 'combined_calibrate', 'progress': 'build'}
+[1.598707] (combined_calibrate) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/build/combined_calibrate', '--', '-j28', '-l28'], 'cwd': '/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/build/combined_calibrate', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'anyi'), ('LANGUAGE', 'zh_CN:en'), ('LC_TIME', 'en_US.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('ALLUSERSPROFILE', '/opt/MVS/MVFG'), ('LD_LIBRARY_PATH', '/usr/local/cuda-13.3/lib64:/opt/MVS/lib/64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-13.0/lib64:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:'), ('SHLVL', '1'), ('HOME', '/home/anyi'), ('OLDPWD', '/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate'), ('LESS', '-R'), ('CONDA_SHLVL', '0'), ('DESKTOP_SESSION', 'ubuntu'), ('ZSH', '/home/anyi/.oh-my-zsh'), ('LSCOLORS', 'Gxfxcxdxbxegedabagacad'), ('GTK_MODULES', 'gail:atk-bridge'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('PAGER', 'less'), ('ROS_PYTHON_VERSION', '3'), ('LC_MONETARY', 'en_US.UTF-8'), ('SYSTEMD_EXEC_PID', '2392'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=7f0985f7582ec6e8d61725d66abc67c1'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/anyi/anaconda3'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'anyi'), ('GTK_IM_MODULE', 'ibus'), ('_', '/usr/bin/colcon'), ('XDG_SESSION_CLASS', 'user'), ('ROS_VERSION', '2'), ('USERNAME', 'anyi'), ('TERM', 'xterm-256color'), ('TF_ENABLE_ONEDNN_OPTS', '0'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('MVCAM_SDK_PATH', '/opt/MVS'), ('WINDOWPATH', '2'), ('PATH', '/usr/local/cuda-13.3/bin:/home/anyi/node-v20.15.1-linux-x64/bin:/usr/bin:/opt/ros/humble/bin:/usr/local/cuda-13.0/bin:/home/anyi/anaconda3/condabin:/home/anyi/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/anyi/MAIXCDK/tools/maixtool/maixtool'), ('SESSION_MANAGER', 'local/anyi:@/tmp/.ICE-unix/2392,unix/anyi:/tmp/.ICE-unix/2392'), ('PAPERSIZE', 'letter'), ('MVCAM_GENICAM_CLPROTOCOL', '/opt/MVS/lib/CLProtocol'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LC_ADDRESS', 'en_US.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/289bef9e_fd5e_44e0_a58a_324065b6b599'), ('XDG_MENU_PREFIX', 'gnome-'), ('DISPLAY', ':1'), ('LC_TELEPHONE', 'en_US.UTF-8'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('GNOME_TERMINAL_SERVICE', ':1.177'), ('XMODIFIERS', '@im=ibus'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('CONDA_PYTHON_EXE', '/home/anyi/anaconda3/bin/python'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('LC_NAME', 'en_US.UTF-8'), ('SHELL', '/bin/zsh'), ('GDMSESSION', 'ubuntu'), ('QT_ACCESSIBILITY', '1'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'en_US.UTF-8'), ('GCC_COLORS', 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'en_US.UTF-8'), ('_CONDA_EXE', '/home/anyi/anaconda3/bin/conda'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/build/combined_calibrate'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=7f0985f7582ec6e8d61725d66abc67c1'), ('CONDA_EXE', '/home/anyi/anaconda3/bin/conda'), ('LC_NUMERIC', 'en_US.UTF-8'), ('MVCAM_SDK_VERSION', ''), ('MAIXCDK_PATH', '/home/anyi/MaixCDK'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_PAPER', 'en_US.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('MVCAM_COMMON_RUNENV', '/opt/MVS/lib'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[1.602329] (-) TimerEvent: {}
+[1.634857] (combined_calibrate) StdoutLine: {'line': b'[  7%] \x1b[32mBuilding CXX object CMakeFiles/combined_calibrate_core.dir/src/gui_pick.cpp.o\x1b[0m\n'}
+[1.635432] (combined_calibrate) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/combined_calibrate_core.dir/src/calib_io.cpp.o\x1b[0m\n'}
+[1.635555] (combined_calibrate) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object CMakeFiles/combined_calibrate_core.dir/src/calib_math.cpp.o\x1b[0m\n'}
+[1.635810] (combined_calibrate) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/combined_calibrate_core.dir/src/mini_yaml.cpp.o\x1b[0m\n'}
+[1.635973] (combined_calibrate) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/combined_calibrate_core.dir/src/overlay.cpp.o\x1b[0m\n'}
+[1.702469] (-) TimerEvent: {}
+[1.802766] (-) TimerEvent: {}
+[1.903150] (-) TimerEvent: {}
+[2.003527] (-) TimerEvent: {}
+[2.103901] (-) TimerEvent: {}
+[2.204280] (-) TimerEvent: {}
+[2.304678] (-) TimerEvent: {}
+[2.405077] (-) TimerEvent: {}
+[2.505453] (-) TimerEvent: {}
+[2.605831] (-) TimerEvent: {}
+[2.706093] (-) TimerEvent: {}
+[2.806558] (-) TimerEvent: {}
+[2.906917] (-) TimerEvent: {}
+[3.007283] (-) TimerEvent: {}
+[3.107767] (-) TimerEvent: {}
+[3.208070] (-) TimerEvent: {}
+[3.308366] (-) TimerEvent: {}
+[3.408579] (-) TimerEvent: {}
+[3.508785] (-) TimerEvent: {}
+[3.609082] (-) TimerEvent: {}
+[3.709385] (-) TimerEvent: {}
+[3.809679] (-) TimerEvent: {}
+[3.909965] (-) TimerEvent: {}
+[4.010279] (-) TimerEvent: {}
+[4.110635] (-) TimerEvent: {}
+[4.122839] (combined_calibrate) StdoutLine: {'line': b'[ 42%] \x1b[32m\x1b[1mLinking CXX static library libcombined_calibrate_core.a\x1b[0m\n'}
+[4.150624] (combined_calibrate) StdoutLine: {'line': b'[ 42%] Built target combined_calibrate_core\n'}
+[4.166100] (combined_calibrate) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding CXX object CMakeFiles/project_cloud.dir/src/project_cloud.cpp.o\x1b[0m\n'}
+[4.166206] (combined_calibrate) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding CXX object CMakeFiles/calibrate_node.dir/src/calibrate_node.cpp.o\x1b[0m\n'}
+[4.166293] (combined_calibrate) StdoutLine: {'line': b'[ 64%] \x1b[32mBuilding CXX object CMakeFiles/solve_extrinsic.dir/src/solve_extrinsic.cpp.o\x1b[0m\n'}
+[4.167054] (combined_calibrate) StdoutLine: {'line': b'[ 71%] \x1b[32mBuilding CXX object CMakeFiles/pick_corners.dir/src/pick_corners.cpp.o\x1b[0m\n'}
+[4.210737] (-) TimerEvent: {}
+[4.310964] (-) TimerEvent: {}
+[4.411252] (-) TimerEvent: {}
+[4.511472] (-) TimerEvent: {}
+[4.611799] (-) TimerEvent: {}
+[4.673745] (combined_calibrate) StdoutLine: {'line': b'[ 78%] \x1b[32m\x1b[1mLinking CXX executable solve_extrinsic\x1b[0m\n'}
+[4.711982] (-) TimerEvent: {}
+[4.812336] (-) TimerEvent: {}
+[4.912641] (-) TimerEvent: {}
+[4.969969] (combined_calibrate) StdoutLine: {'line': b'[ 78%] Built target solve_extrinsic\n'}
+[5.012830] (-) TimerEvent: {}
+[5.113080] (-) TimerEvent: {}
+[5.213387] (-) TimerEvent: {}
+[5.313697] (-) TimerEvent: {}
+[5.414006] (-) TimerEvent: {}
+[5.514320] (-) TimerEvent: {}
+[5.614646] (-) TimerEvent: {}
+[5.714964] (-) TimerEvent: {}
+[5.815277] (-) TimerEvent: {}
+[5.915502] (-) TimerEvent: {}
+[6.015811] (-) TimerEvent: {}
+[6.116114] (-) TimerEvent: {}
+[6.216431] (-) TimerEvent: {}
+[6.316747] (-) TimerEvent: {}
+[6.417061] (-) TimerEvent: {}
+[6.517390] (-) TimerEvent: {}
+[6.617704] (-) TimerEvent: {}
+[6.718013] (-) TimerEvent: {}
+[6.818321] (-) TimerEvent: {}
+[6.918639] (-) TimerEvent: {}
+[7.018960] (-) TimerEvent: {}
+[7.119267] (-) TimerEvent: {}
+[7.219596] (-) TimerEvent: {}
+[7.319904] (-) TimerEvent: {}
+[7.420206] (-) TimerEvent: {}
+[7.520533] (-) TimerEvent: {}
+[7.620828] (-) TimerEvent: {}
+[7.721125] (-) TimerEvent: {}
+[7.821427] (-) TimerEvent: {}
+[7.921632] (-) TimerEvent: {}
+[8.021927] (-) TimerEvent: {}
+[8.122223] (-) TimerEvent: {}
+[8.222530] (-) TimerEvent: {}
+[8.322819] (-) TimerEvent: {}
+[8.423121] (-) TimerEvent: {}
+[8.523418] (-) TimerEvent: {}
+[8.623727] (-) TimerEvent: {}
+[8.724025] (-) TimerEvent: {}
+[8.824320] (-) TimerEvent: {}
+[8.924623] (-) TimerEvent: {}
+[9.024942] (-) TimerEvent: {}
+[9.125248] (-) TimerEvent: {}
+[9.225466] (-) TimerEvent: {}
+[9.325753] (-) TimerEvent: {}
+[9.402497] (combined_calibrate) StdoutLine: {'line': b'[ 85%] \x1b[32m\x1b[1mLinking CXX executable pick_corners\x1b[0m\n'}
+[9.425833] (-) TimerEvent: {}
+[9.526110] (-) TimerEvent: {}
+[9.626402] (-) TimerEvent: {}
+[9.726611] (-) TimerEvent: {}
+[9.772410] (combined_calibrate) StdoutLine: {'line': b'[ 85%] Built target pick_corners\n'}
+[9.826782] (-) TimerEvent: {}
+[9.927063] (-) TimerEvent: {}
+[10.027451] (-) TimerEvent: {}
+[10.127660] (-) TimerEvent: {}
+[10.227885] (-) TimerEvent: {}
+[10.328170] (-) TimerEvent: {}
+[10.428478] (-) TimerEvent: {}
+[10.528768] (-) TimerEvent: {}
+[10.629072] (-) TimerEvent: {}
+[10.729355] (-) TimerEvent: {}
+[10.829548] (-) TimerEvent: {}
+[10.929758] (-) TimerEvent: {}
+[11.030031] (-) TimerEvent: {}
+[11.130367] (-) TimerEvent: {}
+[11.230567] (-) TimerEvent: {}
+[11.330853] (-) TimerEvent: {}
+[11.431153] (-) TimerEvent: {}
+[11.531466] (-) TimerEvent: {}
+[11.631660] (-) TimerEvent: {}
+[11.731887] (-) TimerEvent: {}
+[11.832174] (-) TimerEvent: {}
+[11.932577] (-) TimerEvent: {}
+[12.032859] (-) TimerEvent: {}
+[12.133169] (-) TimerEvent: {}
+[12.233525] (-) TimerEvent: {}
+[12.333831] (-) TimerEvent: {}
+[12.434117] (-) TimerEvent: {}
+[12.534457] (-) TimerEvent: {}
+[12.634648] (-) TimerEvent: {}
+[12.734948] (-) TimerEvent: {}
+[12.835249] (-) TimerEvent: {}
+[12.935558] (-) TimerEvent: {}
+[13.035746] (-) TimerEvent: {}
+[13.136071] (-) TimerEvent: {}
+[13.178034] (combined_calibrate) StdoutLine: {'line': b'[ 92%] \x1b[32m\x1b[1mLinking CXX executable project_cloud\x1b[0m\n'}
+[13.236156] (-) TimerEvent: {}
+[13.336466] (-) TimerEvent: {}
+[13.436672] (-) TimerEvent: {}
+[13.536903] (-) TimerEvent: {}
+[13.538032] (combined_calibrate) StdoutLine: {'line': b'[ 92%] Built target project_cloud\n'}
+[13.637082] (-) TimerEvent: {}
+[13.737373] (-) TimerEvent: {}
+[13.837661] (-) TimerEvent: {}
+[13.937948] (-) TimerEvent: {}
+[14.038138] (-) TimerEvent: {}
+[14.138424] (-) TimerEvent: {}
+[14.238631] (-) TimerEvent: {}
+[14.338844] (-) TimerEvent: {}
+[14.439055] (-) TimerEvent: {}
+[14.539296] (-) TimerEvent: {}
+[14.639787] (-) TimerEvent: {}
+[14.740092] (-) TimerEvent: {}
+[14.840400] (-) TimerEvent: {}
+[14.940709] (-) TimerEvent: {}
+[15.040999] (-) TimerEvent: {}
+[15.141305] (-) TimerEvent: {}
+[15.241592] (-) TimerEvent: {}
+[15.341902] (-) TimerEvent: {}
+[15.442226] (-) TimerEvent: {}
+[15.542529] (-) TimerEvent: {}
+[15.643160] (-) TimerEvent: {}
+[15.743456] (-) TimerEvent: {}
+[15.802701] (combined_calibrate) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable calibrate_node\x1b[0m\n'}
+[15.843641] (-) TimerEvent: {}
+[15.943878] (-) TimerEvent: {}
+[16.044184] (-) TimerEvent: {}
+[16.144501] (-) TimerEvent: {}
+[16.192326] (combined_calibrate) StdoutLine: {'line': b'[100%] Built target calibrate_node\n'}
+[16.201506] (combined_calibrate) CommandEnded: {'returncode': 0}
+[16.202259] (combined_calibrate) JobProgress: {'identifier': 'combined_calibrate', 'progress': 'install'}
+[16.209147] (combined_calibrate) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/build/combined_calibrate'], 'cwd': '/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/build/combined_calibrate', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'anyi'), ('LANGUAGE', 'zh_CN:en'), ('LC_TIME', 'en_US.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('ALLUSERSPROFILE', '/opt/MVS/MVFG'), ('LD_LIBRARY_PATH', '/usr/local/cuda-13.3/lib64:/opt/MVS/lib/64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/usr/local/cuda-13.0/lib64:/opt/MVS/lib/64:/opt/MVS/lib/32:/opt/MVS/lib/64:/opt/MVS/lib/32:'), ('SHLVL', '1'), ('HOME', '/home/anyi'), ('OLDPWD', '/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate'), ('LESS', '-R'), ('CONDA_SHLVL', '0'), ('DESKTOP_SESSION', 'ubuntu'), ('ZSH', '/home/anyi/.oh-my-zsh'), ('LSCOLORS', 'Gxfxcxdxbxegedabagacad'), ('GTK_MODULES', 'gail:atk-bridge'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('PAGER', 'less'), ('ROS_PYTHON_VERSION', '3'), ('LC_MONETARY', 'en_US.UTF-8'), ('SYSTEMD_EXEC_PID', '2392'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=7f0985f7582ec6e8d61725d66abc67c1'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('_CONDA_ROOT', '/home/anyi/anaconda3'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'anyi'), ('GTK_IM_MODULE', 'ibus'), ('_', '/usr/bin/colcon'), ('XDG_SESSION_CLASS', 'user'), ('ROS_VERSION', '2'), ('USERNAME', 'anyi'), ('TERM', 'xterm-256color'), ('TF_ENABLE_ONEDNN_OPTS', '0'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('MVCAM_SDK_PATH', '/opt/MVS'), ('WINDOWPATH', '2'), ('PATH', '/usr/local/cuda-13.3/bin:/home/anyi/node-v20.15.1-linux-x64/bin:/usr/bin:/opt/ros/humble/bin:/usr/local/cuda-13.0/bin:/home/anyi/anaconda3/condabin:/home/anyi/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/anyi/MAIXCDK/tools/maixtool/maixtool'), ('SESSION_MANAGER', 'local/anyi:@/tmp/.ICE-unix/2392,unix/anyi:/tmp/.ICE-unix/2392'), ('PAPERSIZE', 'letter'), ('MVCAM_GENICAM_CLPROTOCOL', '/opt/MVS/lib/CLProtocol'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LC_ADDRESS', 'en_US.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/289bef9e_fd5e_44e0_a58a_324065b6b599'), ('XDG_MENU_PREFIX', 'gnome-'), ('DISPLAY', ':1'), ('LC_TELEPHONE', 'en_US.UTF-8'), ('LANG', 'zh_CN.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('GNOME_TERMINAL_SERVICE', ':1.177'), ('XMODIFIERS', '@im=ibus'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('CONDA_PYTHON_EXE', '/home/anyi/anaconda3/bin/python'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('LC_NAME', 'en_US.UTF-8'), ('SHELL', '/bin/zsh'), ('GDMSESSION', 'ubuntu'), ('QT_ACCESSIBILITY', '1'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'en_US.UTF-8'), ('GCC_COLORS', 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'en_US.UTF-8'), ('_CONDA_EXE', '/home/anyi/anaconda3/bin/conda'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/build/combined_calibrate'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=7f0985f7582ec6e8d61725d66abc67c1'), ('CONDA_EXE', '/home/anyi/anaconda3/bin/conda'), ('LC_NUMERIC', 'en_US.UTF-8'), ('MVCAM_SDK_VERSION', ''), ('MAIXCDK_PATH', '/home/anyi/MaixCDK'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_PAPER', 'en_US.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('MVCAM_COMMON_RUNENV', '/opt/MVS/lib'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[16.214575] (combined_calibrate) StdoutLine: {'line': b'-- Install configuration: "Release"\n'}
+[16.214650] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/lib/combined_calibrate/calibrate_node\n'}
+[16.215587] (combined_calibrate) StdoutLine: {'line': b'-- Set runtime path of "/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/lib/combined_calibrate/calibrate_node" to ""\n'}
+[16.215645] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/lib/combined_calibrate/project_cloud\n'}
+[16.216336] (combined_calibrate) StdoutLine: {'line': b'-- Set runtime path of "/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/lib/combined_calibrate/project_cloud" to ""\n'}
+[16.216419] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/lib/combined_calibrate/pick_corners\n'}
+[16.216880] (combined_calibrate) StdoutLine: {'line': b'-- Set runtime path of "/home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/lib/combined_calibrate/pick_corners" to ""\n'}
+[16.216936] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/lib/combined_calibrate/solve_extrinsic\n'}
+[16.216962] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/launch\n'}
+[16.216987] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/launch/calibrate.launch.py\n'}
+[16.217023] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/config\n'}
+[16.217046] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/config/combined_calibrate.rviz\n'}
+[16.217080] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/config/combined_calibrate.yaml\n'}
+[16.217176] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/ament_index/resource_index/package_run_dependencies/combined_calibrate\n'}
+[16.217231] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/ament_index/resource_index/parent_prefix_path/combined_calibrate\n'}
+[16.217287] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/environment/ament_prefix_path.sh\n'}
+[16.217515] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/environment/ament_prefix_path.dsv\n'}
+[16.217583] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/environment/path.sh\n'}
+[16.217611] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/environment/path.dsv\n'}
+[16.217636] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/local_setup.bash\n'}
+[16.217667] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/local_setup.sh\n'}
+[16.217689] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/local_setup.zsh\n'}
+[16.217710] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/local_setup.dsv\n'}
+[16.217732] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/package.dsv\n'}
+[16.217754] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/ament_index/resource_index/packages/combined_calibrate\n'}
+[16.217785] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/cmake/combined_calibrateConfig.cmake\n'}
+[16.217821] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/cmake/combined_calibrateConfig-version.cmake\n'}
+[16.217844] (combined_calibrate) StdoutLine: {'line': b'-- Installing: /home/anyi/Dart/Dart_ROS2_WS/src/ros2_calibrate/combined_calibrate/install/combined_calibrate/share/combined_calibrate/package.xml\n'}
+[16.218861] (combined_calibrate) CommandEnded: {'returncode': 0}
+[16.235613] (combined_calibrate) JobEnded: {'identifier': 'combined_calibrate', 'rc': 0}
+[16.236165] (-) EventReactorShutdown: {}

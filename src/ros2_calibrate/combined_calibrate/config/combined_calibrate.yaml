@@ -1,0 +1,36 @@
+# Parameters for the camera + LiDAR joint calibration.
+# Paths (shots_dir, extrinsics_path, camera params, LiDAR config) are set by
+# calibrate.launch.py so this file only holds behaviour and topic settings.
+calibrate:
+  ros__parameters:
+    mode: guided                # guided | capture | solve | verify
+    lidar_topic: /livox/lidar
+    image_topic: /image_raw
+    camera_info_topic: /image_raw/camera_info
+    clicked_point_topic: /clicked_point
+    lidar_frame: livox_frame
+
+    accumulate_frames: 20       # scans stacked into one shot (Mid-70 is sparse)
+    max_shots: 8                # poses recorded before solving automatically
+    min_shots: 3                # below this the result is only a warning
+    corner_count: 4
+    corner_labels: "左上,右上,右下,左下"
+    interactive: true           # false = headless, pick corners with the CLI tools
+    show_preview: true
+    preview_hz: 2.0             # live preview rate while aiming the target
+    publish_rate_hz: 2.0        # overlay rate after solving
+    max_depth_m: 30.0
+    point_size: 2
+    fix_roi_intrinsics: true    # camera_info is full frame, image is a centred ROI
+    pcd_binary: true            # binary PCD keeps 200k point shots small
+
+project_cloud:
+  ros__parameters:
+    accumulate_frames: 20
+    max_depth_m: 30.0
+    min_depth_m: 0.3
+    point_size: 2
+    publish_rate_hz: 2.0
+    save_path: ""               # set to a PNG path to dump one overlay frame
+    show_window: false
+    fix_roi_intrinsics: true

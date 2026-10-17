@@ -1,0 +1,47 @@
+# Parameters shared by the LiDAR-only calibration nodes.
+# `map_pcd` and `output_yaml` are supplied by the launch files; the default map
+# is config/RM2026.pcd, the RM field cloud, installed into the package share.
+
+# RM2026.pcd: 786487 points, binary_compressed, frame = rm_frame.
+# Extent x[-0.57, 28.58] y[-0.55, 15.50] z[-0.20, 2.00], 175033 points after the
+# 0.1 m voxel downsample this node applies on load.
+
+map_builder_node:
+  ros__parameters:
+    lidar_topic: /livox/lidar
+    accumulate_frames: 20        # scans averaged into one reference map
+    cell_degrees: 0.1            # angular cell of the farthest-point filter
+    leaf_size: 0.1               # voxel size in meters
+    roi:                         # field region to keep, in the LiDAR frame
+      min_x: 5.0                 # assumes the launcher sits near the rm_frame
+      max_x: 30.0                # origin looking down +x; adjust to your mount
+      min_y: -10.0
+      max_y: 8.0
+      min_z: -1.0
+      max_z: 7.0
+
+lidar_calibrate_node:
+  ros__parameters:
+    lidar_topic: /livox/lidar
+    map_frame: rm_frame
+    lidar_frame: livox_frame
+    accumulate_frames: 20
+    cell_degrees: 0.1
+    leaf_size: 0.1
+    fitness_threshold: 0.2       # GICP fitness below this counts as converged
+    max_iterations: 100
+    stop_after_calibration: true
+    initial_guess:               # seed for GICP, in the map frame
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      roll: 0.0
+      pitch: 0.0
+      yaw: 0.0
+    roi:
+      min_x: 5.0
+      max_x: 30.0
+      min_y: -10.0
+      max_y: 8.0
+      min_z: -1.0
+      max_z: 7.0
