@@ -29,14 +29,14 @@ ament_auto_find_build_dependencies()
 ## Build ##
 ###########
 
-# Comment or uncomment to control whether the file is compiled.
+# Concrete handlers and writers are maintained in these two source files.
 
 set(EVENT_HANDLER_SOURCES
-    src/event_handler/roll_handler.cpp
+    src/event_handler.cpp
 )
 
 set(SERIAL_WRITER_SOURCES
-    src/serial_writer/dyaw_writer.cpp
+    src/serial_writer.cpp
 )
 
 set(BASE_SOURCES

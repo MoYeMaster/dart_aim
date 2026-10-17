@@ -2,6 +2,7 @@
 
 #include "rm_serial_driver/serial_data.hpp"
 
+// Add concrete writer implementations here and register them below.
 namespace rm_serial_driver::writer
 {
 

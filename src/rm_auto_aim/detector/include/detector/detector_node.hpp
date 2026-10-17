@@ -6,6 +6,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/camera_info.hpp>
 #include <sensor_msgs/msg/image.hpp>
+#include <std_msgs/msg/float32.hpp>
 #include <std_msgs/msg/header.hpp>
 #include <geometry_msgs/msg/point_stamped.hpp>
 #include "tf2_ros/buffer.hpp"
@@ -35,6 +36,7 @@ public:
 private:
   void imageCallback(const sensor_msgs::msg::Image::ConstSharedPtr & image_msg);
   void cameraInfoCallback(const sensor_msgs::msg::CameraInfo::ConstSharedPtr & camera_info_msg);
+  void stateCallback(const std_msgs::msg::Float32 & state_msg);
 
   Detector::Params declareDetectorParams();
   BallisticParams declareBallisticParams();
@@ -71,6 +73,7 @@ private:
 
   rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_sub_;
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr camera_info_sub_;
+  rclcpp::Subscription<std_msgs::msg::Float32>state_sub_;
   rclcpp::Publisher<auto_aim_interfaces::msg::DebugLights>::SharedPtr debug_lights_pub_;
   rclcpp::Publisher<auto_aim_interfaces::msg::Lights>::SharedPtr lights_pub_;
   rclcpp::Publisher<auto_aim_interfaces::msg::DartStates>::SharedPtr dart_states_pub_;

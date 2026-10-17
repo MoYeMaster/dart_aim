@@ -1,10 +1,10 @@
 /hik_camera_ros2_driver:
   ros__parameters:
     camera_info_url: "package://hik_camera_ros2_driver/config/camera_info.yaml"
-    width: 1536
-    height: 720
-    offset_x: 768 
-    offset_y: 360
+    width: 768
+    height: 360
+    offset_x: 384
+    offset_y: 180
     pixel_format: "BayerRG8"        # Recommended Option: "RGB8Packed", "BayerRG8"
     adc_bit_depth: "Bits_8"         # If using "BayerRG8", <adc_bit_depth> must be set as "Bits_8"; otherwise, it can be "Bits_8" or "Bits_12"
     use_sensor_data_qos: false
@@ -14,4 +14,4 @@
 
     acquisition_frame_rate: 166.0   # Unit: Hz
     exposure_time: 6000             # Unit: us
-    gain: 23.9812                      # Range: 0.0 ~ 16.9, Unit: dB
+    gain: 16.0                    # Range: 0.0 ~ 16.9, Unit: dB
