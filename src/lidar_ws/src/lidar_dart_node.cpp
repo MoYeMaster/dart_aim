@@ -12,6 +12,11 @@
 #include <sensor_msgs/msg/point_cloud2.hpp>
 #include <std_msgs/msg/float32_multi_array.hpp>
 
+#include <tf2_ros/buffer.hpp>
+#include "tf2_ros/transform_listener.hpp"
+#include "tf2_geometry_msgs/tf2_geometry_msgs.hpp"
+#include "tf2/exceptions.hpp"
+
 #include <algorithm>
 #include <cmath>
 #include <limits>
@@ -67,6 +72,10 @@ class LidarDartNode : public rclcpp::Node {
     camera_sub_ = create_subscription<std_msgs::msg::Float32MultiArray>(
         "~/camera_bearing", 10,
         [this](const std_msgs::msg::Float32MultiArray::SharedPtr msg) { onCameraBearing(msg); });
+    
+    tf_buffer_ = std::make_shared<tf2_ros::Buffer>(this->get_clock());
+    tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
+
   }
 
  private:
@@ -131,6 +140,38 @@ class LidarDartNode : public rclcpp::Node {
         get_parameter(prefix + ".yaw").as_double());
   }
 
+  bool tf2Transform(
+    const TargetSolution &solution,
+    const rclcpp::Time &stamp,
+    geometry_msgs::msg::PointStamped &tf_target_from_lidar)
+  {
+    if (!tf_buffer_ || !tf_listener_)
+    {
+      return false;
+    }
+
+    geometry_msgs::msg::PointStamped point_lidar;
+    point_lidar.header.frame_id = "livox_frame";
+    point_lidar.header.stamp = stamp;
+    point_lidar.point.x = solution.center.x();
+    point_lidar.point.y = solution.center.y();
+    point_lidar.point.z = solution.center.z();
+
+    try
+    {
+      tf_target_from_lidar = tf_buffer_->transform(point_lidar, "muzzle_link");
+    }
+    catch (const tf2::TransformException &ex)
+    {
+      RCLCPP_WARN_THROTTLE(
+          get_logger(), *get_clock(), 5000,
+          "Failed to transform point to muzzle_link: %s", ex.what());
+      return false;
+    }
+
+    return true;
+  }
+
   void onGimbalPose(const geometry_msgs::msg::PoseStamped::SharedPtr msg) {
     last_gimbal_pose_ = gimbal_pose_;
     gimbal_pose_ = Pose::Identity();
@@ -186,25 +227,28 @@ class LidarDartNode : public rclcpp::Node {
         get_parameter("preprocess.sor_k").as_int(),
         get_parameter("preprocess.sor_std_ratio").as_double());
 
-    Pose pose_world = muzzle_world_;
-    if (map_ && map_->size() >= 3) {
-      IcpResult icp_result;
-      pose_world = localize(
-          clean, map_, muzzle_world_,
-          get_parameter("icp.max_iterations").as_int(),
-          get_parameter("icp.transformation_epsilon").as_double(),
-          get_parameter("icp.max_correspondence_dist").as_double(),
-          icp_result);
-      RCLCPP_DEBUG(get_logger(), "ICP fitness=%.2f rmse=%.3f",
-                   icp_result.fitness, icp_result.inlier_rmse);
-    }
+    // Pose pose_world = muzzle_world_;
+    // if (map_ && map_->size() >= 3) {
+    //   IcpResult icp_result;
+    //   pose_world = localize(
+    //       clean, map_, muzzle_world_,
+    //       get_parameter("icp.max_iterations").as_int(),
+    //       get_parameter("icp.transformation_epsilon").as_double(),
+    //       get_parameter("icp.max_correspondence_dist").as_double(),
+    //       icp_result);
+    //   RCLCPP_DEBUG(get_logger(), "ICP fitness=%.2f rmse=%.3f",
+    //                icp_result.fitness, icp_result.inlier_rmse);
+    // }
 
-    const CloudPtr points_world = lidarToWorld(
-        clean, t_lidar_to_gimbal_, gimbal_pose_, t_gimbal_to_muzzle_, pose_world);
-    const Eigen::Vector3d muzzle_pos = pose_world.translation();
+
+    // const CloudPtr points_world = lidarToWorld(
+    //     clean, t_lidar_to_gimbal_, gimbal_pose_, t_gimbal_to_muzzle_, pose_world);
+    // const Eigen::Vector3d muzzle_pos = pose_world.translation();
     auto solution = solveTarget(
-        points_world,
-        muzzle_pos,
+        // pose_world,
+        // muzzle_world,
+        clean,
+        // Eigen::Vector3d::Zero(),
         get_parameter("target.distance_threshold").as_double(),
         get_parameter("target.min_inliers").as_int(),
         get_parameter("target.quality_inliers").as_int());
@@ -223,22 +267,29 @@ class LidarDartNode : public rclcpp::Node {
     if (solution) {
       confidence = solution->confidence;
       inlier_count = solution->inlier_count;
-      ekf_->updateLidar(solution->center,
+      geometry_msgs::msg::PointStamped target_in_muzzle;
+      if (!tf2Transform(*solution, rclcpp::Time(msg->header.stamp), target_in_muzzle)) {
+        return;
+      }
+      ekf_->updateLidar(Eigen::Vector3d(target_in_muzzle.point.x,
+                        target_in_muzzle.point.y,
+                        target_in_muzzle.point.z),
                         get_parameter("ekf.lidar_noise").as_double());
     }
 
-    const Eigen::Vector3d target_world = ekf_->position();
-    Eigen::Vector3d target_in_muzzle = pose_world.inverse() * target_world;
+    const Eigen::Vector3d target_muzzle = ekf_->position();
+    // Eigen::Vector3d target_in_muzzle = pose_world.inverse() * target_world;
     const double yaw =
-        std::atan2(target_in_muzzle.y(), target_in_muzzle.x()) * 180.0 / kPi;
+        std::atan2(target_muzzle.y(), target_muzzle.x()) * 180.0 / kPi;
     const double pitch =
-        std::atan2(target_in_muzzle.z(),
-                   std::hypot(target_in_muzzle.x(), target_in_muzzle.y())) *
+        std::atan2(target_muzzle.z(),
+                   std::hypot(target_muzzle.x(), target_muzzle.y())) *
         180.0 / kPi;
 
     TargetOutput output;
-    output.target_world = target_world;
-    output.slant_range = (target_world - muzzle_pos).norm();
+    output.target_world = target_muzzle;
+    // output.slant_range = (target_world - muzzle_pos).norm();
+    output.slant_range  = target_muzzle.norm();
     output.muzzle_yaw = yaw;
     output.muzzle_pitch = pitch;
     output.confidence = confidence;
@@ -253,6 +304,9 @@ class LidarDartNode : public rclcpp::Node {
   rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr lidar_sub_;
   rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr gimbal_sub_;
   rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr camera_sub_;
+
+  std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
+  std::shared_ptr<tf2_ros::TransformListener> tf_listener_;
 
   Pose t_lidar_to_gimbal_;
   Pose t_gimbal_to_muzzle_;

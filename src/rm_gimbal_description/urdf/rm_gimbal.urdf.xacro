@@ -6,6 +6,8 @@
   <xacro:arg name="xyz_camera" default="0 0 0.30" /> 
   <xacro:arg name="xyz_muzzle" default="0 0 0.45" />
   <xacro:arg name="rpy" default="0 0 0" />
+  <xacro:arg name="xyz_lidar" default="0 0 0.18" />
+  <xacro:arg name="rpy_lidar" default="0 0 0" />
 
   <link name="chassis_link" />
 
@@ -21,7 +23,7 @@
 
   <joint name="camera_joint" type="fixed">
     <origin xyz="$(arg xyz_camera)" rpy="$(arg rpy)" />
-    <parent link="chassis_link" />
+    <parent link="muzzle_link" />
     <child link="camera_link" />
     <axis xyz="0 0 0" />
   </joint>
@@ -32,6 +34,14 @@
     <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
     <parent link="camera_link" />
     <child link="camera_optical_frame" />
+  </joint>
+
+  <link name="livox_frame" />
+
+  <joint name="lidar_joint" type="fixed">
+    <origin xyz="$(arg xyz_lidar)" rpy="$(arg rpy_lidar)" />
+    <parent link="muzzle_link" />
+    <child link="livox_frame" />
   </joint>
 
 </robot>

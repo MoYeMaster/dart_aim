@@ -6,8 +6,8 @@
 
 namespace lidar_dart {
 
-std::optional<TargetSolution> solveTarget(const CloudConstPtr& points_world,
-                                          const Eigen::Vector3d& muzzle_world,
+std::optional<TargetSolution> solveTarget(const CloudConstPtr& points,
+                                        //   const Eigen::Vector3d& origin,
                                           double distance_threshold,
                                           int min_inliers,
                                           int quality_inliers);

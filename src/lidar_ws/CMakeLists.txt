@@ -14,6 +14,9 @@ find_package(std_msgs REQUIRED)
 find_package(pcl_conversions REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(PCL REQUIRED COMPONENTS common filters registration segmentation io)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
   src/coordinate_transform.cpp
@@ -56,6 +59,9 @@ ament_target_dependencies(lidar_dart_node
   geometry_msgs
   std_msgs
   pcl_conversions
+  tf2
+  tf2_ros
+  tf2_geometry_msgs
 )
 
 install(
