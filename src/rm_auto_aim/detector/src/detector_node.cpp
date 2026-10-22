@@ -174,7 +174,7 @@ namespace rm_auto_aim
 
   void DetectorNode::stateCallback(const std_msgs::msg::Float32 & state_msg)
   {
-    
+    //后面完善串口的信息之后要搞这里，更新位姿数据
   }
 
   void DetectorNode::cameraInfoCallback(

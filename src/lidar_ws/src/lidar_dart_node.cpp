@@ -68,6 +68,7 @@ class LidarDartNode : public rclcpp::Node {
         [this](const sensor_msgs::msg::PointCloud2::SharedPtr msg) { onLidar(msg); });
     gimbal_sub_ = create_subscription<geometry_msgs::msg::PoseStamped>(
         "~/gimbal_pose", 10,
+        //后面通信弄完记得改这个话题，串口包那边要发一个位姿的话题
         [this](const geometry_msgs::msg::PoseStamped::SharedPtr msg) { onGimbalPose(msg); });
     camera_sub_ = create_subscription<std_msgs::msg::Float32MultiArray>(
         "~/camera_bearing", 10,

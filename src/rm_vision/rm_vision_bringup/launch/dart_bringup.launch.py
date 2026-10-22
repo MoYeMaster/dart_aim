@@ -14,6 +14,9 @@ def generate_launch_description():
         "config",
         "camera_params.yaml",
     )
+    lidar_params = os.path.join(
+        get_package_share_directory("lidar_dart_cpp"), "config", "params.yaml"
+    )
     detector_params = os.path.join(
         get_package_share_directory("rm_vision_bringup"),
         "config",
@@ -57,6 +60,14 @@ def generate_launch_description():
             ["camera_node:=", LaunchConfiguration("camera_log_level")],
         ],
     )
+    lidar_node = Node(
+                package="lidar_dart_cpp",
+                executable="lidar_dart_node",
+                name="lidar_dart_node",
+                output="screen",
+                parameters=[lidar_params],
+    )
+
     detector_node = Node(
         package="detector",
         executable="detector_node",
@@ -126,6 +137,7 @@ def generate_launch_description():
             PushRosNamespace("dart"),
             robot_state_publisher_node,
             camera_node,
+            lidar_node,
             serial_driver_node,
             tracker_node,
             TimerAction(period=1.0, actions=[detector_node, dart_detector_node]),

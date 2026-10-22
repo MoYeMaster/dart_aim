@@ -40,7 +40,7 @@
 
   <joint name="lidar_joint" type="fixed">
     <origin xyz="$(arg xyz_lidar)" rpy="$(arg rpy_lidar)" />
-    <parent link="muzzle_link" />
+    <parent link="camera_optical_joint" />
     <child link="livox_frame" />
   </joint>
 
