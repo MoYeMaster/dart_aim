@@ -13,14 +13,14 @@
 // Declare concrete handlers and writers here; keep registration in their .cpp files.
 namespace rm_serial_driver::handler
 {
-class RollHandler : public BasicEventHandler
+class YawHandler : public BasicEventHandler
 {
 public:
-  explicit RollHandler(rclcpp::Node * _node, const std::string & _name);
+  explicit YawHandler(rclcpp::Node * _node, const std::string & _name);
   void handleEvent(const ReceivePacket & _packet) override;
 
 private:
-  rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr roll_pub_;
+  rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr yaw_pub_;
 };
 }  // namespace rm_serial_driver::handler
 

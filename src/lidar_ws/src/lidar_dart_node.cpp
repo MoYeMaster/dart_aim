@@ -66,10 +66,10 @@ class LidarDartNode : public rclcpp::Node {
         get_parameter("lidar_topic").as_string(),
         rclcpp::QoS(get_parameter("qos_depth").as_int()),
         [this](const sensor_msgs::msg::PointCloud2::SharedPtr msg) { onLidar(msg); });
-    gimbal_sub_ = create_subscription<geometry_msgs::msg::PoseStamped>(
-        "~/gimbal_pose", 10,
+    gimbal_sub_ = create_subscription<std_msgs::msg::Float32>(
+        "dart/serial_driver/pose", 10,
         //后面通信弄完记得改这个话题，串口包那边要发一个位姿的话题
-        [this](const geometry_msgs::msg::PoseStamped::SharedPtr msg) { onGimbalPose(msg); });
+        [this](const std_msgs::msg::Float32::SharedPtr msg) { onGimbalPose(msg); });
     camera_sub_ = create_subscription<std_msgs::msg::Float32MultiArray>(
         "~/camera_bearing", 10,
         [this](const std_msgs::msg::Float32MultiArray::SharedPtr msg) { onCameraBearing(msg); });
@@ -173,17 +173,12 @@ class LidarDartNode : public rclcpp::Node {
     return true;
   }
 
-  void onGimbalPose(const geometry_msgs::msg::PoseStamped::SharedPtr msg) {
+  void onGimbalPose(const std_msgs::msg::Float32::SharedPtr msg) {
     last_gimbal_pose_ = gimbal_pose_;
-    gimbal_pose_ = Pose::Identity();
-    gimbal_pose_.translation() =
-        Eigen::Vector3d(msg->pose.position.x, msg->pose.position.y, msg->pose.position.z);
-    gimbal_pose_.linear() = Eigen::Quaterniond(
-        msg->pose.orientation.w,
-        msg->pose.orientation.x,
-        msg->pose.orientation.y,
-        msg->pose.orientation.z).toRotationMatrix();
-  }
+    constexpr double roll = 0.0;
+    constexpr double pitch = 33.0 * kPi / 180.0;
+    gimbal_pose_ = poseFromXYZRPY(0.0, 0.0, 0.0, roll, pitch, msg->data);
+  }//这个不行，后面要改成从tf里面获取posetstamped
 
   void onCameraBearing(const std_msgs::msg::Float32MultiArray::SharedPtr msg) {
     if (msg->data.size() < 2) {
@@ -303,7 +298,7 @@ class LidarDartNode : public rclcpp::Node {
   }
 
   rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr lidar_sub_;
-  rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr gimbal_sub_;
+  rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr gimbal_sub_;
   rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr camera_sub_;
 
   std::shared_ptr<tf2_ros::Buffer> tf_buffer_;
