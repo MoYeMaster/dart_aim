@@ -76,26 +76,26 @@ namespace rm_auto_aim
     auto_aim_interfaces::msg::DartDetections detections_msg;
     detections_msg.header = image_msg->header;
     detections_msg.header.frame_id = target_frame_;
-    if (!std::isfinite(dart_length_m_) || !std::isfinite(dart_width_m_) ||
-        dart_length_m_ <= 0.0 || dart_width_m_ <= 0.0 || dart_length_m_ < dart_width_m_)
-    {
-      RCLCPP_WARN_THROTTLE(
-          get_logger(), *get_clock(), 2000, "Configure dart_length_m >= dart_width_m > 0 for PnP");
-      dart_detections_pub_->publish(detections_msg);
-      return;
-    }
-    if (!camera_info_ || !pnp_solver_.hasCameraInfo() || image_msg->header.frame_id.empty() ||
-        camera_info_->header.frame_id != image_msg->header.frame_id ||
-        camera_info_->width != image_msg->width || camera_info_->height != image_msg->height ||
-        (camera_info_->distortion_model != "plumb_bob" &&
-         camera_info_->distortion_model != "rational_polynomial" &&
-         !camera_info_->distortion_model.empty()))
-    {
-      RCLCPP_WARN_THROTTLE(
-          get_logger(), *get_clock(), 2000, "Waiting for compatible camera calibration and image frame");
-      dart_detections_pub_->publish(detections_msg);
-      return;
-    }
+    // if (!std::isfinite(dart_length_m_) || !std::isfinite(dart_width_m_) ||
+    //     dart_length_m_ <= 0.0 || dart_width_m_ <= 0.0 || dart_length_m_ < dart_width_m_)
+    // {
+    //   RCLCPP_WARN_THROTTLE(
+    //       get_logger(), *get_clock(), 2000, "Configure dart_length_m >= dart_width_m > 0 for PnP");
+    //   dart_detections_pub_->publish(detections_msg);
+    //   return;
+    // }
+    // if (!camera_info_ || !pnp_solver_.hasCameraInfo() || image_msg->header.frame_id.empty() ||
+    //     camera_info_->header.frame_id != image_msg->header.frame_id ||
+    //     camera_info_->width != image_msg->width || camera_info_->height != image_msg->height ||
+    //     (camera_info_->distortion_model != "plumb_bob" &&
+    //      camera_info_->distortion_model != "rational_polynomial" &&
+    //      !camera_info_->distortion_model.empty()))
+    // {
+    //   RCLCPP_WARN_THROTTLE(
+    //       get_logger(), *get_clock(), 2000, "Waiting for compatible camera calibration and image frame");
+    //   dart_detections_pub_->publish(detections_msg);
+    //   return;
+    // }
     try
     {
       img_color = cv_bridge::toCvCopy(image_msg, sensor_msgs::image_encodings::BGR8)->image;

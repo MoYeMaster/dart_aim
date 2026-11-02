@@ -137,9 +137,9 @@ def generate_launch_description():
             PushRosNamespace("dart"),
             robot_state_publisher_node,
             camera_node,
-            lidar_node,
+            # lidar_node,
             serial_driver_node,
             tracker_node,
-            TimerAction(period=1.0, actions=[detector_node, dart_detector_node]),
+            TimerAction(period=1.0, actions=[detector_node]), #dart_detector暂时废弃
         ]
     )

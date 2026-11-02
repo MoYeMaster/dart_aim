@@ -3,30 +3,29 @@
 <robot name="rm_gimbal"
   xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:arg name="xyz_camera" default="0 0 0.30" /> 
-  <xacro:arg name="xyz_muzzle" default="0 0 0.45" />
+  <xacro:arg name="xyz_camera" default="0 0 0" /> 
+  <xacro:arg name="xyz_muzzle" default="0 0 0" />
   <xacro:arg name="rpy" default="0 0 0" />
-  <xacro:arg name="xyz_lidar" default="0 0 0.18" />
+  <xacro:arg name="xyz_lidar" default="0 0 0" />
   <xacro:arg name="rpy_lidar" default="0 0 0" />
 
-  <link name="chassis_link" />
+  <link name="gimbal_link" />
 
   <link name="muzzle_link" />
   <link name="camera_link" />
   <link name="camera_optical_frame" />
   <link name="livox_frame" />
 
-  <joint name="gimbal_joint" type="fixed">
+  <joint name="muzzle_joint" type="fixed">
   <origin xyz="$(arg xyz_muzzle)" rpy="$(arg rpy)" />
-    <parent link="chassis_link" />
+    <parent link="gimbal_link" />
     <child link="muzzle_link" />
-    <child link="gimbal_link" />
   </joint>
 
   <joint name="camera_joint" type="fixed">
     <origin xyz="$(arg xyz_camera)" rpy="$(arg rpy)" />
     <parent link="muzzle_link" />
-    <!-- <child link="camera_link" /> -->
+    <child link="camera_link"/>
     <axis xyz="0 0 0" />
   </joint>
 

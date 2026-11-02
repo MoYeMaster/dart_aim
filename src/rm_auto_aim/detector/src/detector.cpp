@@ -69,7 +69,7 @@ std::vector<BaseLight> Detector::detect(const cv::Mat & img) const
   std::vector<std::vector<cv::Point>> contours;
   cv::findContours(binary, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
 
-  cv::drawContours(img, contours, -1, cv::Scalar(0, 0, 255), 0.5, cv::LINE_8);
+  // cv::drawContours(img, contours, -1, cv::Scalar(255, 255, 255), 0.5, cv::LINE_8);
 
   std::vector<BaseLight> detections;
   detections.reserve(contours.size());
