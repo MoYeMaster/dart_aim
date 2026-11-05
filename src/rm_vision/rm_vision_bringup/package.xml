@@ -12,6 +12,7 @@
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
+  <exec_depend>foxglove_bridge</exec_depend>
   <exec_depend>detector</exec_depend>
   <exec_depend>dart_detector</exec_depend>
   <exec_depend>tracker</exec_depend>

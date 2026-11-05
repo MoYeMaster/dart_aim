@@ -123,6 +123,13 @@ def generate_launch_description():
         ],
     )
 
+    foxglove_bridge_node = Node(
+        package="foxglove_bridge",
+        executable="foxglove_bridge",
+        name="foxglove_bridge",
+        output="screen",
+    )
+
     return LaunchDescription(
         [
             DeclareLaunchArgument("camera_log_level", default_value="info"),
@@ -134,6 +141,7 @@ def generate_launch_description():
             DeclareLaunchArgument("serial_parity", default_value="none"),
             DeclareLaunchArgument("serial_stop_bits", default_value="1"),
             DeclareLaunchArgument("serial_log_level", default_value="info"),
+            foxglove_bridge_node,
             PushRosNamespace("dart"),
             robot_state_publisher_node,
             camera_node,
